@@ -1,0 +1,170 @@
+3.8.6
+	-Alterado para funcionar corretamente com pagseguro transparente: usa taxvat e dob 
+3.8.5
+	-Adicionados botões para avançar no checkout
+	-Corrigido o arquivo paranaue.js
+3.8.4
+	-Adicionado plugin de sugestões de domínios de email - completer
+	-Adicionado plugin de seguestões de senha - pGenerator (oculto)
+	-IE é opcional
+	-comando jQuery substituído por tulipa
+	-jQuery é chamado dentro das páginas de cadastro, edição e checkout
+	-CPF é copiado no campo taxvat
+3.8.3
+	-Preenchimento de campos telefone ou celular (antes telefone era obrigatório e celular opcional)
+	-Reformulação dos js que usavam setInterval
+	-Acrescentado link para descobrir cep
+3.8.2.1
+	-Alterado efeito show e hide para fadeIn e fadeOut
+3.8.2
+	-Estilos usando less css
+	-Alteradas opções de busca cep que davam conflito em alguns servidores como o Kinghost
+	-Busca CNPJ ainda só funciona na segunda tentativa em diante...
+3.8.1
+	-Consulta CPNJ externa (novo) - funcionando só depois da segunda tentativa
+	-Renomeados os arquivos paranaue...
+3.8
+	-Adicionada a função de consulta cnpj - Ainda não funciona!
+	-Alterados register.phtml, entre outros e adicionados paranauecnpj.js e pasta consulta-cnpj
+	-Adicionada mensagem se o cep não foi encontrado e algumas melhorias na busca do cep
+	-Checkout pronto para layout responsivo
+3.7.3.1
+	-Busca cep voltei ao método antigo e fiz correções
+	-Alterações nos estilos das mensagens de bloqueios
+3.7.3
+	-Nova busca cep - buscacep.php
+	-Reduzido o tempo de loading nos arquivos: paranauereg.js, paranaueinfo.js, paranaueend.js,paranauecheckout.js,paranaue.js
+3.7.2
+	-Adicionado validação da data de nascimento
+	-Alterados: deivison.js, billing.phtml, edit.phtml, register.phtml,tulipa-checkout.css, paranauetipo.js,billing.phtml
+3.7.1
+	-Login no checkout final usando fancybox
+	-Arquivos alterados: onepagecheckout.phtml, login.phtml, forgotpassword.phtml,onepagecheckout.css,onepagecheckout.js
+3.7
+	-Beautificando js
+	-Adicionado recurso de força de senha (forcapass.js, bootstrap.min.css,bootstrap.min.js)
+3.6.3
+	-Mudanças nos estilos apenas
+	-Corrigido erro na busca do cep (deivison.js) que não funcionava na primeira vez
+3.6.2
+	-Mudanças nos estilos das páginas
+	-Arquivos alterados: edit.phtml, address > edit.phtml, billing.phtml, register.phtml, tulipa-checkout.css (novo)
+3.6.1
+	-Corrigido bug quando instala o superpay
+	-Arquivo editado methods.phtml
+3.6
+	-Reformulação da lógica dos scripts
+	-Arquivos alterados: paranaue.js, paranauetipo.js (novo), paranauecheckout.js, paranaueend.js,paranueinfo.js,paranauereg.js,paranauecad.js,onepagechecokut.phtml, register.phtml,edit.phtml
+3.5.4
+	-Arquivos alterados: available.phtml, methods.phtml
+	-Melhorada a lógica na escolha de frete e pagamento
+3.5.3
+	-Arquivos alterados: onepage > payment > methods.phtml e alterado arquivo available.phtml do magento (leia arquivo IMPORTANTE.txt na pasta anterior)
+	-Checkout final com botões radio e checkbox com estilo novo
+3.5.2
+	-Alterações na lógica do checkout final (frete e pagamento)
+	-Alterados: onepagecheckout.js, onepage > payment > methods.phtml, paranauecheckout.js
+3.5.1
+	-Melhorias no Checkout final para uso do icheck
+3.5
+	-Arquivos editados: billing.phtml, edit.phtml, noItems.phtml,onepagecheckout.phtml,register.phtml,shipping.phtml,icheck.min.js (novo), inputs.js (novo),paranaue.js,paranauecad.js
+	-Adicionada pasta skins em js > Tulipa-Checkout
+	-Adicionado personalização de campos radio e checkbox
+	-Melhorias visuais
+3.4.2
+	-Arquivos: paranaue.js, paranauecheckout.js
+	-Corrigido comportamento de exibição de colunas no checkout final
+3.4.1
+	-Adicionado limite de caracteres nos campos
+	-Corrigido comportamento da busca do cep ao clicar e sair do campo sem preencher
+	-Arquivos alterados: deivison.js, register.phtml, edit.phtml, Address > edit.phtml, billing.phtml, shipping.phtml
+	-Adicionado o arquivo jquery.maskedinput.min.js
+3.4
+	-Finalmente FUNCIONANDO 100%
+	-Corrigido bug que não gravava o tipo de pessoa no checkout final (name do tipopessoa)
+	-Arquivos alterados: billing.phtml, paranaue.phtml, paranauecheckout.phtml
+3.3.3
+	-Alterações nos arquivos: review.phtml, paranaue.js, billing.phtml, onepagecheckout.js, paranauecheckout.js, onepagecheckout.phtml, onepagecheckout.css, deivison.js
+	-Adicionado loading no checkout final
+3.3.2
+	-Alterações em register.phtml, paranauereg.js, paranaueend.js, Address > edit.phtml
+	-Adicionado o mesmo recurso do registro: loading na página, validação de campos vazios etc.
+3.3.1
+	-Muitas mudanças visuais no registro e na edição de informações do usuário
+	-Arquivos modificados: onepagecheckout.css, register.phtml,edit.phtml,paranaueinfo.js (criado),paranauecad.js,paranauereg.js (criado), jquery.blockUI.js (novo plugin).
+	-Loading na página até download de todos arquivos forem completos
+3.3
+	-Removido o jquery nativo do osc e substituido pelo 1.11
+	-Adaptado todos os documentos para essa mudança:
+	-deivison.js, paranaue.js, paranauecad.js, jquery.js, onepagecheckout.xml,edit.phtml, address > edit.phtml, register.phtml, billing.phtml, onepagecheckout.phtml
+3.2.2
+	-Alterações em paranauecheckout.js e review.phtml
+	-Corrigido bug quando usa o módulo do Superpay (limpa campos do cartão)
+3.2.1
+	-Alterações deivison.js (função de validação de cnpj e cpf não deixava o checkout finalizar a venda), register.phtml, billing.phtml, edit.phtml, paranaue.js
+	-TULIPA CHECKOUT FUNCIONANDO
+	-falta somente gravar o tipo de pessoa no checkout final (recuperar o tipo de pessoa está ok) - billing.phtml
+3.2
+	-Alterações billing.phtml, form > edit.phtml, register.phtml, paranaue.js, paranauecad.js, paranaueend.js, paranauecheckout.js
+	-Desativado o envio do form ao pressionar enter
+	-Foco no próximo campo ao pressionar enter
+	-Melhorias visuais
+3.1.6
+	-Alterações em onepagecheckout.phtml e onepagecheckout.css
+	-Melhorias visuais
+	-Coluna Resumo da Compra flutuante
+3.1.5
+	-Melhorias visuais
+	-Correções de layout em shipping.phtml para entrega em outro endereço
+	-Outros arquivos alterados: onepagecheckout.css, paranauecheckout.js e onepagecheckout.phtml
+3.1.4
+	-Corrigido o comportamento da escolha da forma de pagamento - paranauecheckout.js
+3.1.3
+	-Corrigido a exibição da data de nascimento do checkout final: paranaue.js
+3.1.2
+	-Correção no paranauecheckout.js: Corrigido valores salvos na seção são corretamente interpretados (frete e exibição das formas de pagamento)
+3.1.1
+	-Ajustes visuais:
+		-adicionado foto topo titulo-onestepcheckout.gif
+		-form > edit.phtml
+		-onepagecheckout.css
+3.1.0
+	Checkout mostra as etapas de billing, frete, pagamento e resumo conforme cliente vai preenchendo
+	Modificados os arquivos:
+	-Todos arquivos js	-
+	-paranauecheckout.js (foi criado)
+	-edit.phtml (os 2)
+	-register.phtml
+	-billing.phtml
+	-onepagecheckout.phtml
+	Mudei o caminho dos arquivos js
+3.0.3
+	Corrigido a troca de máscaras de cpf e cnpj nos arquivos paranaue.js, paranauecad.js e deivison.js
+	Atualização das configurações no admin - Veja as imagens de configuração
+3.0.2
+	Mudança no label nome para nome completo
+3.0.1
+	Desativado a máscara do traço em Deivison.js pois dava erro no checkout ao calcular o cep.
+3.0
+	100% funcionando: cadastro, edição do painel do cliente e checkout
+	Modificações nos arquivos:
+	-paranaue.js
+	-paranauecad.js
+	-paranaueend.js
+	-deivison.js
+	-billing.phtml
+	-address/edit.phtml
+	-form/edit.phtml
+	-register.phtml
+	Modificação das mensagens no admin
+2.0.3
+	Correções no preenchimento do cep.
+	Painel do cliente > edição de endereço (address/edit.phtml)- muitas mudanças
+	Atualização do buscacep.php, phpQuery-onefile.php e deivison.js
+2.0.2.1
+	Ajustes de lógica
+	Register.phtml: correções de chamada do campo region
+2.0.2
+	Correção de if no paranauecad.js para checagem de url
+2.0.1
+	Correções visuais nos botões radio na página de checkout final.

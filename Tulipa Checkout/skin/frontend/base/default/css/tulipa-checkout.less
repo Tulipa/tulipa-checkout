@@ -1,0 +1,301 @@
+/* declaração de mixins */
+.gradiente(@cor: #F5F5F5, @comeco: #EEE, @parada: #FFF) {
+  background: @cor;
+  background: -webkit-gradient(linear,
+                               left bottom,
+                               left top,
+                               color-stop(0, @comeco),
+                               color-stop(1, @parada));
+  background: -ms-linear-gradient(bottom,
+                                  @comeco,
+                                  @parada);
+  background: -moz-linear-gradient(center bottom,
+                                   @comeco 0%,
+                                   @parada 100%);
+  background: -o-linear-gradient(@parada,
+                                 @comeco);
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@parada,@comeco));
+}
+.bw-gradiente(@cor: #F5F5F5, @comeco: 0, @parada: 255) {
+  background: @cor;
+  background: -webkit-gradient(linear,
+                               left bottom,
+                               left top,
+                               color-stop(0, rgb(@comeco,@comeco,@comeco)),
+                               color-stop(1, rgb(@parada,@parada,@parada)));
+  background: -ms-linear-gradient(bottom,
+                                  rgb(@comeco,@comeco,@comeco) 0%,
+                                  rgb(@parada,@parada,@parada) 100%);
+  background: -moz-linear-gradient(center bottom,
+                                   rgb(@comeco,@comeco,@comeco) 0%,
+                                   rgb(@parada,@parada,@parada) 100%);
+  background: -o-linear-gradient(rgb(@parada,@parada,@parada),
+                                 rgb(@comeco,@comeco,@comeco));
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",rgb(@parada,@parada,@parada),rgb(@comeco,@comeco,@comeco)));
+}
+.bordas(@corTopo: #EEE, @corDireita: #EEE, @corBaixo: #EEE, @corEsquerda: #EEE) {
+  border-top: solid 1px @corTopo;
+  border-left: solid 1px @corEsquerda;
+  border-right: solid 1px @corDireita;
+  border-bottom: solid 1px @corBaixo;
+}
+.sombra(@eixoX: 0, @eixoY: 1px, @desfoque: 2px, @alfa: 0.1) {
+  -webkit-box-shadow: @eixoX @eixoY @desfoque rgba(0, 0, 0, @alfa);
+  -moz-box-shadow: @eixoX @eixoY @desfoque rgba(0, 0, 0, @alfa);
+  box-shadow: @eixoX @eixoY @desfoque rgba(0, 0, 0, @alfa);
+}
+.redondo(@arredondamento: 2px) {
+  -webkit-border-radius: @arredondamento;
+  -moz-border-radius: @arredondamento;
+  border-radius: @arredondamento;
+}
+.border-radius(@direitaTopo: 0, @direitaBaixo: 0, @esquerdaBaixo: 0, @esquerdaTopo: 0) {
+  -webkit-border-top-right-radius: @direitaTopo;
+  -webkit-border-bottom-right-radius: @direitaBaixo;
+  -webkit-border-bottom-left-radius: @esquerdaBaixo;
+  -webkit-border-top-left-radius: @esquerdaTopo;
+  -moz-border-radius-topright: @direitaTopo;
+  -moz-border-radius-bottomright: @direitaBaixo;
+  -moz-border-radius-bottomleft: @esquerdaBaixo;
+  -moz-border-radius-topleft: @esquerdaTopo;
+  border-top-right-radius: @direitaTopo;
+  border-bottom-right-radius: @direitaBaixo;
+  border-bottom-left-radius: @esquerdaBaixo;
+  border-top-left-radius: @esquerdaTopo;
+  .background-clip(padding-box);
+}
+.opacidade(@opacidade: 0.5) {
+  -moz-opacity: @opacidade;
+  -khtml-opacity: @opacidade;
+  -webkit-opacity: @opacidade;
+  opacity: @opacidade;
+  @opperc: @opacidade * 100;
+  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacidade=@{opperc})";
+  filter: ~"alpha(opacidade=@{opperc})";
+}
+.transicao-duracao(@duracao: 0.2s) {
+  -moz-transition-duration: @duracao;
+  -webkit-transition-duration: @duracao;
+  -o-transition-duration: @duracao;
+  transition-duration: @duracao;
+}
+.transformar(...) {
+  -webkit-transform: @arguments;
+  -moz-transform: @arguments;
+  -o-transform: @arguments;
+  -ms-transform: @arguments;
+  transform: @arguments;
+}
+.rotacao(@graus:5deg){
+  .transform(rotate(@graus));
+}
+.escala(@valor:1.5){
+  .transform(scale(@valor));
+}
+.transicao(@duracao:0.2s, @suavizacao:ease-out) {
+  -webkit-transition: all @duracao @suavizacao;
+  -moz-transition: all @duracao @suavizacao;
+  -o-transition: all @duracao @suavizacao;
+  transition: all @duracao @suavizacao;
+}
+.sombra-interna(@horizontal:0, @vertical:1px, @desfoque:2px, @alfa: 0.4) {
+  -webkit-box-shadow: inset @horizontal @vertical @desfoque rgba(0, 0, 0, @alfa);
+  -moz-box-shadow: inset @horizontal @vertical @desfoque rgba(0, 0, 0, @alfa);
+  box-shadow: inset @horizontal @vertical @desfoque rgba(0, 0, 0, @alfa);
+}
+.sombra-box(@argumentos) {
+  -webkit-box-shadow: @argumentos;
+  -moz-box-shadow: @argumentos;
+  box-shadow: @argumentos;
+}
+.box-sizing(@tamanho: border-box) {
+  -ms-box-sizing: @tamanho;
+  -moz-box-sizing: @tamanho;
+  -webkit-box-sizing: @tamanho;
+  box-sizing: @tamanho;
+}
+.user-select(@argumento: none) {
+  -webkit-user-select: @argumento;
+  -moz-user-select: @argumento;
+  -ms-user-select: @argumento;
+  user-select: @argumento;
+}
+.colunas(@larguraColuna: 250px, @colunas: 0, @espacamento: 50px, @corLinha: #EEE, @estiloLinha: solid, @larguraLinha: 1px) {
+  -moz-column-width: @larguraColuna;
+  -moz-column-count: @colunas;
+  -moz-column-gap: @espacamento;
+  -moz-column-rule-color: @corLinha;
+  -moz-column-rule-style: @estiloLinha;
+  -moz-column-rule-width: @larguraLinha;
+  -webkit-column-width: @larguraColuna;
+  -webkit-column-count: @colunas;
+  -webkit-column-gap: @espacamento;
+  -webkit-column-rule-color: @corLinha;
+  -webkit-column-rule-style: @estiloLinha;
+  -webkit-column-rule-width: @larguraLinha;
+  column-width: @larguraColuna;
+  column-count: @colunas;
+  column-gap: @espacamento;
+  column-rule-color: @corLinha;
+  column-rule-style: @estiloLinha;
+  column-rule-width: @larguraLinha;
+}
+.translate(@x:0, @y:0) {
+  .transform(translate(@x, @y));
+}
+.fundo-clip(@argumento: padding-box) {
+  -moz-background-clip: @argumento;
+  -webkit-background-clip: @argumento;
+  background-clip: @argumento;
+}
+/* estilos */
+/* Geral */
+@corbotao:#8e8e8e;
+.campoobr{border:1px dashed #f00 !important;background:#FAEBE7 !important;}
+/*input[type="radio"]{ float:none !important;}*/
+label[for="Fisica"]{ margin-right:20px !important;}
+label[for="Fisica"],label[for="Juridica"]{float:none !important; margin-left:5px !important;}
+label[for="tipopessoa"]{margin-right:20px !important;}
+input#newFisica,input#newJuridica{ float: left;margin-right:5px; margin-top:3px;}
+input#newFisica{margin-left:30px;}
+.msgcampo{ font-size:10px; color:#f00; clear:both;}
+.msgcamponormal{ font-size:10px;clear:both;}
+.btdesativado{background:@corbotao !important;border-color:#ccc !important;opacity:0.5;}
+.btsubmit{ display:none;}
+.btavancarckt{ background:@corbotao;margin: 10px 0;padding: 10px;color: #fff;font-weight: bold;text-transform: uppercase;}
+.btavancarckt:hover{ padding-left:20px; opacity:0.8;}
+/* cadastro */
+body.customer-account-create{
+	label[for="month"] em{ display:none;}
+	.progress{width: 786px;}
+	p.msgcampo{.msgcampo;}
+	.btdesativado{background:@corbotao !important;border-color:#ccc !important;opacity:0.5;}
+	.colcampo{ width:400px; float:left;}
+	.tamcampo{ width:380px;}
+	.colcampog{ width:700px; float:left;}
+	.colcampop{ width:85px;float:left;}
+	input[id*=street2]{ width:80px;}
+	input[id*=street1]{ width:680px !important;}
+	#country{ width:235px;}
+	div.fieldset.dadospessoais{ min-height:160px;}
+	li.control.is_subscribed,li.month{ clear:both;}
+	li[class*="city"]{ clear:left;}
+}
+/* edição info*/
+label[for="change_password"]{ margin-left:5px;}
+label[for="month"] em{ display:none;}
+li.tipopessoa div.input-box{clear: inherit;}
+body.customer-account-edit{
+	.colcampo{width:280px; float:left;}
+	.infoedit{ min-height:150px;}
+	.progress{width: 536px;}
+}
+/* edição end */
+body.customer-address-index #campoestado{ display:block !important;}
+/* Billing - checkout final */
+body.onepagecheckout-index-index{
+	.progress{width: 237px;}
+	#campoestado{ display:block !important;}
+	.btsubmit{width:100%;}
+	.ptdivline img{ width:auto;}
+}
+
+/* responsivo */
+@media only screen and ( min-width: 768px ) and ( max-width: 960px ) {
+/* cadastro */
+body.customer-account-create{
+	.colcampo,.input-box,.tamcampo,.camporespons,.field,#country,.wide,input[id*=street1]{ width:100% !important;}
+	.progress{ width:594px !important;}
+}
+/* edição */
+body.customer-account-edit{
+	li.month{ clear:both;}
+	.col-main{ width:92.5% !important;padding-left:9px; padding-right:9px;margin: 0 auto;float:none;}
+	.infoedit{min-height: 240px !important;}
+}
+/* edição endereço */
+body.customer-address-form{
+	.col-left{ display:none;}
+	.col-main{ width:92.5% !important;padding-left:9px; padding-right:9px;margin: 0 auto;float:none;}
+	.progress{ width:260px !important;}
+	.infoedit{min-height: 240px !important;}
+}
+/* checkout */
+body.onepagecheckout-index-index .ptdivline img{ width:650px;}
+#onepagecheckout_orderform{
+	.col3-set .col-1,.col3-set .col-2,.col3-set .col-3{ float:none; width:100%; min-height:150px !important; margin-left:0px !important;}
+}
+.form_fields label{ float:none !important;}
+/* superpay */
+ul#payment_form_superpay.form-list li:nth-child(2) div.input-box{ width:400px !important;}
+}
+@media only screen and ( min-width: 480px ) and ( max-width: 767px ) {
+/* cadastro */
+body.customer-account-create{
+	.colcampo,.input-box,.tamcampo,.camporespons,.field,#country,.wide,input[id*=street1]{ width:100% !important;}
+	.progress{ width:335px !important;}
+}
+/* edição */
+body.customer-account-edit{
+	.col-main{ width:92.5% !important;padding-left:9px; padding-right:9px;margin: 0 auto;float:none;}
+	.progress{ width:260px !important;}
+	.infoedit{min-height: 240px !important;}
+}
+/* edição endereço */
+body.customer-address-form{
+	.col-left{ display:none;}
+	.col-main{ width:92.5% !important;padding-left:9px; padding-right:9px;margin: 0 auto;float:none;}
+	.progress{ width:260px !important;}
+	.infoedit{min-height: 240px !important;}
+	.form-list li.wide input.input-text{ width:260px;}
+}
+/* checkout */
+body.onepagecheckout-index-index{
+	.ptdivline{ display:none;}
+	div.col-1,div.col-2,.col3-set .col-3,.col3-set .col-2 p.newsletter,.col3-set .col-2 div#checkout-coupon-discount-load,.col3-set .col-2 div#payment-method{ display:none;}
+	div.col-1,div.col-2,div.col-3{ padding:10px;}
+	div.col-1:hover,div.col-2:hover,div.col-3:hover{-webkit-border-radius: none;
+	border-radius: none;-webkit-box-shadow: none;box-shadow: none;}
+	#checkout-review-table{ margin-left:-5px;}
+}
+#onepagecheckout_orderform{
+.col3-set .col-1,.col3-set .col-2,.col3-set .col-3{ float:none; width:100%; min-height:150px !important; margin-left:0px !important;}
+}
+/* superpay */
+ul#payment_form_superpay.form-list li:nth-child(2) div.input-box{ width:400px !important;}
+}
+@media only screen and ( max-width: 479px ) {
+/* cadastro */
+  .colcampo,.input-box,.tamcampo,.camporespons,.field,#country,.wide,input[id*=street1]{ width:100% !important;}
+  #day,#month{ width:30px;}
+  #year{ width:40px;}
+  .form-list .customer-dob .dob-day,.form-list .customer-dob .dob-month,.form-list .customer-dob .dob-year{ width:50px;}
+  .progress{ width:187px !important;}
+  label[for="tipopessoa"]{margin-right: 90px;}
+/* edição */
+body.customer-account-edit{
+	.col-main{ width:92.5% !important;padding-left:9px; padding-right:9px;margin: 0 auto; float:none;}
+	.progress{ width:168px !important;}
+	.infoedit{min-height: 280px !important;}
+}
+/* checkout */
+body.onepagecheckout-index-index{
+	.ptdivline{ display:none;}
+	label[for="tipopessoa"] {margin-right: 170px;margin-bottom: 5px;}
+	div[class*="taxvat"]{margin-top: 45px !important;}
+	div.data_area.customer-dob{ width:100% !important;}
+	.col3-set .col-1,.col3-set .col-2,.col3-set .col-3{ float:none; width:100%; padding-left:0px; min-height:150px !important; margin-left:0px !important;}
+	input[id*=street1] {width: 95% !important;}
+	div.col-1,div.col-2,.col3-set .col-3,.col3-set .col-2 p.newsletter,.col3-set .col-2 div#checkout-coupon-discount-load,.col3-set .col-2 div#payment-method{ display:none;}
+	div.col-1,div.col-2,div.col-3{ padding:10px;}
+	div.col-1:hover,div.col-2:hover,div.col-3:hover{-webkit-border-radius: none;border-radius: none;-webkit-box-shadow: none;box-shadow: none;}
+	#checkout-review-table{ margin-left:-5px;}
+}
+/* superpay */
+ul#payment_form_superpay.form-list li:nth-child(2) div.input-box{column-count: 1 !important;-moz-column-count: 1 !important;-webkit-column-count: 1 !important;}
+.divPagamentoSuperPayCC{width: 220px;}
+#payment_form_superpay{
+	width: 215px;
+	.input-text,.input-box{ width:100% !important;}
+}
+}

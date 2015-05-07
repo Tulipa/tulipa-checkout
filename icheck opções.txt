@@ -1,0 +1,3 @@
+Skins: minimal, square, flat, line, polaris, futurico
+Cores: black, red, green, blue, aero, grey, orange, yellow, pink, purple
+Arquivos para alterar: inputs.js, template/checkout/onepage/shipping_method/available.phtml, register.phtml, edit.phtml, onepagecheckout.phtml, onepage/payment/methods.phtml

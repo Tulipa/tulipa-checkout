@@ -1,0 +1,33 @@
+Adicione no final do arquivo template/checkout/onepage/shipping_method/available.phtml ou use o arquivo dentro do tulipa checkout:
+
+<script>
+//personalizando campos radio e checkbox
+jQuery('div#checkout-shipping-method-load input').on('ifClicked', function(event){
+var tipoent = this.id;
+jQuery('div#checkout-shipping-method-load input').removeAttr('checked');        
+jQuery("#"+tipoent).attr('checked', 'checked').click();
+jQuery.blockUI({
+            message: '<h1>Carregando, aguarde...</h1>',
+			css: {border: 'none', padding: '15px', backgroundColor: '#E3EAEC', '-webkit-border-radius': '10px 10px 10px 10px','border-radius': '10px 10px 10px 10px', color: '#fff' }
+        	});
+checkout.update({
+        'shipping-method': 1
+   				});
+setTimeout(function() {
+checkout.update({
+		'review': 1
+		});
+setTimeout(function() {
+jQuery.unblockUI();
+}, 2000);
+},1000);
+jQuery("body.onepagecheckout-index-index div.col-2").show("fast");
+jQuery("#onepagecheckout_orderform .col3-set .col-2 div#payment-method").show("fast");
+}).iCheck({
+radioClass: 'iradio_square-grey',
+checkboxClass: 'icheckbox_square-grey',
+increaseArea: '20%'
+});
+</script>
+
+ou use o arquivo anexado (versão do magento 1.7.0.2)

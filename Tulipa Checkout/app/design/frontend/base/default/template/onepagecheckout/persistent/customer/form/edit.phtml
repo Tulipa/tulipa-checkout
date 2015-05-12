@@ -1,0 +1,204 @@
+<?php
+//$jquery = Mage::getStoreConfig('onepagecheckout/general/jquery');
+//if ($jquery !== '0') :
+?>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/jquery.js"></script>
+<script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/jquery.maskedinput.min.js"></script>
+<script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/jquery.autotab-1.1b.js"></script>
+<script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/deivison.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/jquery.blockUI.js"></script>
+<link href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/skins/square/grey.css" rel="stylesheet">
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/icheck.min.js"></script>
+<link href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/bootstrap.min.css" rel="stylesheet">
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/bootstrap.min.js"></script>
+<link href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/completer.min.css" rel="stylesheet">
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/completer.min.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/pGenerator.jquery.js"></script>
+<?php //endif; ?>
+<script>
+tulipa.blockUI({
+            message: 'Carregando, aguarde...',
+			css: {border: 'none', backgroundColor: 'none', color: '#fff' }
+        	});
+</script>
+<div class="page-title">
+    <h1><?php echo $this->__('Edit Account Information') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate">
+    <div class="fieldset infoedit" style="display:none;">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <h2 class="legend"><?php echo $this->__('Account Information') ?></h2>
+        <ul class="form-list">
+         <?php
+			$tipopessoa = Mage::getStoreConfig('onepagecheckout/outrasopcoes/tipopessoaregistro');
+			if ($tipopessoa !== 'hidden') :
+            ?>
+            	 <li>
+            	 	<?php
+            	 		$attribute = Mage::getModel('eav/config')->getAttribute('customer','tipopessoa');
+            	 	?>
+                    <label for="tipopessoa" <?php if ( $tipopessoa  === 'required' ){ echo 'class="required"'; }?> > <?php if ( $tipopessoa  === 'required' ){ /*echo '<em>*</em>'*/; }?>  <?php echo $this->__('Tipo Pessoa') ?></label>
+                    <div class="input-box">
+                        <select name="tipopessoa" id="tipopessoa" <?php if ( $tipopessoa  === 'required' ){ echo 'class="required"'; }?> >
+                                 <!--<option value=''>Escolha a opcao</option>-->
+                                 <option value='Fisica'>Fisica</option>
+                                 <option value='Juridica'>Juridica</option>
+                                 <!--<option value='Outros'>Outros</option>-->
+                        </select>
+                        <script type="text/javascript">
+						//<![CDATA[
+                            tulipa('#tipopessoa').children("option:contains('<?php echo $this->htmlEscape($this->getCustomer()->getTipopessoa()) ?>')").attr('selected', 'selected');
+						//]]>
+						</script>
+                    </div>
+                </li>
+             <?php endif; ?>
+            <li class="fields">
+                <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
+            </li>
+                        <?php
+			$cpfcnpj = Mage::getStoreConfig('onepagecheckout/outrasopcoes/cpfcnpjregistro');
+			if ($cpfcnpj !== 'hidden') : ?>
+                <li class="colcampo campomsg">
+	                <label for="cpfcnpj" <?php if ( $cpfcnpj  === 'required' ){ echo 'class="required"'; }?> > <?php if ( $cpfcnpj  === 'required' ){/* echo '<em>*</em>'*/; }?><?php echo $this->__('Taxvat') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="cpfcnpj" name="cpfcnpj" value="<?php echo $this->htmlEscape($this->getCustomer()->getCpfcnpj()) ?>"   class="input-text validar_cpf camporespons <?php if($cpfcnpj === 'required'){ echo ' required-entry';} ?>" />
+                        <p class="msgcampo msgcnpj" style=" display:none; position:absolute;">Captcha incorreto! Por favor tente novamente!</p>
+                    </div>
+                </li>
+            <?php endif; ?>
+            <?php
+			$ie = Mage::getStoreConfig('onepagecheckout/outrasopcoes/ieregistro');
+			if ($ie !== 'hidden') : ?>
+                <li class="colcampo campomsg">
+	                <label for="ie" <?php if ( $ie  === 'required' ){ echo 'class="required"'; }?> > <?php if ( $ie  === 'required' ){ /*echo '<em>*</em>'*/; }?><?php echo "IE"//$this->__('IE (Inscri&ccedil;&atilde;o Estadual)') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="ie" maxlength="20" id="ie" value="<?php echo $this->htmlEscape($this->getCustomer()->getIe()) ?>"  class="input-text camporespons <?php if($ie === 'required'){ echo ' required-entry';} ?>" />
+                    </div>
+                </li>
+            <?php endif; ?>
+                        <?php
+			$identidade = Mage::getStoreConfig('onepagecheckout/outrasopcoes/rgiregistro');
+			if ($identidade !== 'hidden') : ?>
+                <li class="colcampo">
+	                <label for="rg" <?php if ( $identidade  === 'required' ){ echo 'class="required"'; }?> > <?php if ( $identidade  === 'required' ){ /*echo '<em>*</em>'*/; }?><?php echo "RG*"//$this->__('Identidade') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="rg" id="rg" maxlength="20"  value="<?php echo $this->htmlEscape($this->getCustomer()->getRg()) ?>"  class="input-text camporespons  <?php if($identidade === 'required'){ echo ' required-entry';} ?>" />
+                    </div>
+                </li>
+            <?php endif; ?>
+            <li class="fields colcampo">
+                    <label for="newnome" class="required">Nome Completo</label><!--<sup>*</sup>-->
+                    <div class="input-box">
+					<input type="text" name="newnome" id="newnome" title="Nome completo" class="input-text required-entry camporespons" />
+                    <p class="msgcampo nomefull" style=" display:none;">Por favor preencha seu nome completo!</p>
+                    </div>
+                </li>
+            <li class="colcampo">
+                <label for="email" class="required"><!--<em>*</em>--><?php echo $this->__('Email Address') ?>*</label>
+                <div class="input-box">
+                    <input type="text" name="email" id="email" value="<?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text required-entry validate-email camporespons" />
+                </div>
+            </li>     
+        <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+        <?php //if ($_taxvat->isEnabled()): ?>
+            <li style="display:none;"><?php echo $_taxvat->setTaxvat($this->getCustomer()->getTaxvat())->toHtml() ?></li>
+        <?php //endif ?>
+        <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+        <?php if ($_gender->isEnabled()): ?>
+            <li><?php echo $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?></li>
+        <?php endif ?>
+            <li class="control" style="clear:both;">
+                <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" /><label for="change_password"><?php echo $this->__('Change Password') ?></label>
+            </li>
+ <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?> 
+		<?php if ($_dob->isEnabled()): ?>
+            <li><?php echo $_dob->setDate($this->getCustomer()->getDob())->toHtml() ?></li>
+             	 <p class="msgcampo msgdob1" style="display:none;">Informe um mês entre 01 e 12</p>
+                 <p class="msgcampo msgdob2" style="display:none;">Informe um dia entre 01 e 31</p>
+                 <p class="msgcampo msgdob3" style="display:none;">Informe um dia entre 01 e 30</p>
+                 <p class="msgcampo msgdob4" style="display:none;">Informe um dia entre 01 e 28</p>
+                 <p class="msgcampo msgdob5" style="display:none;">Informe um dia entre 01 e 29</p>
+                 <p class="msgcampo msgdob6" style="display:none;">Informe um ano menor que o ano atual</p>
+        <?php endif ?>
+            <?php
+			$company = Mage::getStoreConfig('onepagecheckout/outrasopcoes/companyregistro');
+			if ($company !== 'hidden') : ?>
+                <li>
+	                <label for="empresa" <?php if ( $company  === 'required' ){ echo 'class="required"'; }?> > <?php if ( $company  === 'required' ){/* echo '<em>*</em>'*/; }?><?php echo $this->__('Empresa') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="empresa" id="empresa" value="<?php echo $this->htmlEscape($this->getCustomer()->getEmpresa()) ?>"   class="input-text camporespons <?php if($company === 'required'){ echo ' required-entry';} ?>" />
+                    </div>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </div>
+    <div class="fieldset" style="display:none;">
+        <h2 class="legend"><?php echo $this->__('Change Password') ?></h2>
+        <ul class="form-list">
+            <li>
+                <label for="current_password" class="required"><!--<em>*</em>--><?php echo $this->__('Current Password') ?>*</label>
+                <div class="input-box">
+                    <input type="password" maxlength="30" title="<?php echo $this->__('Current Password') ?>" class="input-text camporespons" name="current_password" id="current_password" />
+                </div>
+            </li>
+            <li style="display:none;"><div class="geradorsenha" style="width:130px; float:left;"><a href="#" style="text-decoration:none;">Gerar Senha Segura?</a></div><div class="senhagerada" style="width:400px; float:left;display:none;"">Senha gerada: <b>&nbsp;</b></div></li>
+            <li class="fields">
+                <div class="field">
+                    <label for="password" class="required"><!--<em>*</em>--><?php echo $this->__('New Password') ?>*</label>
+                    <div class="input-box">
+                        <input type="password" maxlength="30" title="<?php echo $this->__('New Password') ?>" class="input-text validate-password inputpass camporespons" name="password" id="password" />
+                    </div>          
+                </div>
+                <div class="field">
+                    <label for="confirmation" class="required"><!--<em>*</em>--><?php echo $this->__('Confirm New Password') ?>*</label>
+                    <div class="input-box">
+                        <input type="password" maxlength="30" title="<?php echo $this->__('Confirm New Password') ?>" class="input-text validate-cpassword camporespons" name="confirmation" id="confirmation" />
+                        <p class="msgcampo msgsenhas" style="display:none;">As senhas não se correspondem!</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <!--<p class="required"><?php //echo $this->__('* Required Fields') ?></p>-->
+        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+        <button type="submit" disabled="disabled" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
+        <p class="msgcampo btsubmit">Por favor preencha todos os campos obrigatórios (*) para prosseguir!</p>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+    function setPasswordForm(arg){
+        if(arg){
+            tulipa('#current_password').parents("div.fieldset").fadeIn("slow");
+            $('current_password').addClassName('required-entry');
+            $('password').addClassName('required-entry');
+            $('confirmation').addClassName('required-entry');
+
+        }else{
+            tulipa('#current_password').parents("div.fieldset").fadeOut("slow");
+            $('current_password').removeClassName('required-entry');
+            $('password').removeClassName('required-entry');
+            $('confirmation').removeClassName('required-entry');
+        }
+    }
+    <?php if($this->getCustomer()->getChangePassword()): ?>
+        setPasswordForm(true);
+    <?php endif; ?>
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+    // Adicionar validacao de cpf e cnpj ao campo Taxvat
+    Validation.add('validar_cpf', 'O CPF ou CNPJ informado \xE9 invalido', function(v){return validaCPF(v,0);});
+//]]>
+</script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/cad.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/info.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/tipo.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/inputs.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/forcapass.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/gerasenha.js"></script>

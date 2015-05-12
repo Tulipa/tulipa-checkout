@@ -1,0 +1,37 @@
+<div id="checkout-review" class="onepagecheckout_block">
+    <div class="op_block_title"><?php echo $this->__('Review Your Order') ?></div>
+    <div class="listaitens"><div id="checkout-review-load">
+            <?php echo $this->getChildHtml('info') ?>
+    </div></div>
+    <div id="newtotal"><table style="width:100%;"></table></div>
+    <div id="checkout-review-submit">    
+        <?php echo $this->getChildHtml('agreements') ?>
+        <div class="buttons-set" id="review-buttons-container">
+        <button type="submit" title="<?php echo $this->__('Place Order Now') ?>" class="button btn-checkout" onclick="limpacc();checkout.save(); return false;"><?php echo $this->__('Place Order Now') ?></button>
+            <span class="please-wait" id="review-please-wait" style="display:none;">
+                <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Submitting order information...') ?>" title="<?php echo $this->__('Submitting order information...') ?>" class="v-middle" /> <?php echo $this->__('Submitting order information...') ?>
+            </span>
+            <p class="msgcampo btsubmit">Por favor preencha todos os campos obrigatórios (*) para prosseguir!</p>
+        </div>
+    </div>
+</div>
+<style>
+p.msgcampo{ font-size:10px; color:#f00; clear:both; width:300px;}
+.btdesativado{background:#8e8e8e !important;border-color:#ccc !important;opacity:0.5;}
+</style>
+<script>
+function limpacc(){
+	/*if((tulipa('#superpay_cc_cid2').val() != "") && (tulipa('#superpay_cc_number2').val() != "") && (tulipa('#superpay_cc_owner2').val() != "") && (tulipa('#superpay_expiration2').val() != "")&& (tulipa('#superpay_expiration_yr2').val() != "")){
+	tulipa('#superpay_cc_owner').val(tulipa('#superpay_cc_owner2').val());
+	tulipa('#superpay_cc_number').val(tulipa('#superpay_cc_number2').val());
+	tulipa('#superpay_cc_cid').val(tulipa('#superpay_cc_cid2').val());
+	tulipa('#superpay_expiration').val(tulipa('#superpay_expiration2').val());
+	tulipa('#superpay_expiration_yr').val(tulipa('#superpay_expiration_yr2').val());
+	tulipa('#superpay_cc_number2').val('').removeClass('required-entry');
+	tulipa('#superpay_cc_cid2').val('').removeClass('required-entry');
+	tulipa('#superpay_expiration2').val('').removeClass('required-entry');
+	tulipa('#superpay_expiration_yr2').val('').removeClass('required-entry');
+	tulipa('#superpay_cc_owner2').val('').removeClass('required-entry');
+	}*/
+};
+</script>

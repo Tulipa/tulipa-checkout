@@ -1,0 +1,317 @@
+<?php
+//$jquery = Mage::getStoreConfig('onepagecheckout/general/jquery');
+//if ($jquery !== '0') :
+?>
+<script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/jquery.maskedinput.min.js"></script>
+<script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/jquery.autotab-1.1b.js"></script>
+<script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/deivison.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/jquery.blockUI.js"></script>
+<link href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/skins/square/grey.css" rel="stylesheet">
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/icheck.min.js"></script>
+<link href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/bootstrap.min.css" rel="stylesheet">
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/bootstrap.min.js"></script>
+<link href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/jquery.fancybox.css" rel="stylesheet">
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/jquery.fancybox.js"></script>
+<link href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/completer.min.css" rel="stylesheet">
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/completer.min.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/pGenerator.jquery.js"></script>
+<?php //endif; ?>
+<script>
+tulipa.blockUI({
+            message: 'Carregando, aguarde...',
+			css: {border: 'none', backgroundColor: 'none', color: '#fff' }
+        	});
+</script>
+<div class="account-create">
+    <div class="page-title">
+        <h1><?php echo $this->__('Create an Account') ?></h1>
+    </div>
+    <?php echo $this->getChildHtml('form_fields_before')?>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate">
+    <!-- grupo lojista -->
+    <?php $arrParams = Mage::app()->getRequest()->getParams();
+if( sizeof($arrParams)>0){ ?>
+    <input type="hidden" name="group_id" value="4">
+    <?php } ?>
+    <!-- fim -->
+        <div class="fieldset dadospessoais" style=" display:none;">
+            <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
+            <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
+            <h2 class="legend"><?php echo $this->__('Personal Information') ?></h2>
+            <ul class="form-list">
+                 <?php
+			$tipopessoa = Mage::getStoreConfig('onepagecheckout/outrasopcoes/tipopessoaregistro');
+			if ($tipopessoa !== 'hidden') :
+            ?>
+            	 <li>
+            	 	<?php
+            	 		$attribute = Mage::getModel('eav/config')->getAttribute('customer','tipopessoa');
+            	 	?>
+                    
+                    <div class="input-box">
+                    <label for="tipopessoa" <?php if ( $tipopessoa  === 'required' ){ echo 'class="required"'; }?> > <?php if ( $tipopessoa  === 'required' ){ /*echo '<em>*</em>'*/; }?>  <?php echo $this->__('Tipo Pessoa') ?></label>
+                        <select name="tipopessoa" id="tipopessoa" <?php if ( $tipopessoa  === 'required' ){ echo 'class="required"'; }?> >
+                                 <!--<option value=''>Escolha a opcao</option>-->
+                                 <option value='Fisica' selected="selected">Fisica</option>
+                                 <option value='Juridica'>Juridica</option>
+                                 <!--<option value='Outros'>Outros</option>-->
+                        </select>
+                    </div>
+                </li>
+             <?php endif; ?>
+
+            <?php
+			$cpfcnpj = Mage::getStoreConfig('onepagecheckout/outrasopcoes/cpfcnpjregistro');
+			if ($cpfcnpj !== 'hidden') : ?>
+                <li class="colcampo campomsg">
+	                <label for="cpfcnpj" <?php if ( $cpfcnpj  === 'required' ){ echo 'class="required"'; }?> > <?php if ( $cpfcnpj  === 'required' ){ /*echo '<em>*</em>'*/; }?><?php echo $this->__('Taxvat') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="cpfcnpj" name="cpfcnpj"  title="<?php echo $this->__('CPF/CNPJ'); ?>" class="tamcampo input-text validar_cpf <?php if($cpfcnpj === 'required'){ echo ' required-entry';} ?>" />
+                        <p class="msgcampo msgcnpj" style=" display:none; position:absolute;">Captcha incorreto! Por favor tente novamente!</p>
+                    </div>
+                </li>
+            <?php endif; ?>
+            <?php
+			$ie = Mage::getStoreConfig('onepagecheckout/outrasopcoes/ieregistro');
+			if ($ie !== 'hidden') : ?>
+                <li class="colcampo campomsg">
+	                <label for="ie" <?php if ( $ie  === 'required' ){ echo 'class="required"'; }?> > <?php if ( $ie  === 'required' ){ /*echo '<em>*</em>'*/; }?><?php echo "IE"//$this->__('IE (Inscrição Estadual)') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="ie" id="ie" maxlength="20"  title="<?php echo $this->__('IE (Inscrição Estadual)'); ?>" class="input-text tamcampo <?php if($ie === 'required'){ echo ' required-entry';} ?>" />
+                    </div>
+                </li>
+            <?php endif; ?>
+                                     <?php
+			$identidade = Mage::getStoreConfig('onepagecheckout/outrasopcoes/rgiregistro');
+			if ($identidade !== 'hidden') : ?>
+                <li class="colcampo">
+	                <label for="rg" <?php if ( $identidade  === 'required' ){ echo 'class="required"'; }?> > <?php if ( $identidade  === 'required' ){ /*echo '<em>*</em>'*/; }?><?php echo "RG*"//$this->__('Identidade') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="rg" id="rg" maxlength="20"  title="<?php echo $this->__('Identidade'); ?>" class="tamcampo input-text <?php if($identidade === 'required'){ echo ' required-entry';} ?>" />
+                    </div>
+                </li>
+            <?php endif; ?>
+                <li class="fields">
+                    <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
+                </li>
+                <li class="fields colcampo">
+                    <label for="newnome" class="required">Nome Completo*</label><!--<sup>*</sup>-->
+                    <div class="input-box">
+					<input type="text" name="newnome" id="newnome" title="Nome completo" class="input-text required-entry tamcampo" maxlength="80" />
+                    <p class="msgcampo nomefull" style=" display:none;">Por favor preencha seu nome completo!</p>
+                    </div>
+                </li>
+                <li class="colcampo">
+                    <label for="email_address" class="required"><!--<em>*</em>--><?php echo $this->__('Email Address') ?>*</label>
+                    <div class="input-box">
+                        <input type="text" name="email" id="email_address" maxlength="50" value="<?php echo $this->htmlEscape($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry tamcampo" />
+                    </div>
+                </li>
+               
+            <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+            <?php //if ($_taxvat->isEnabled()): ?>
+                <li style="display:none;"><?php echo $_taxvat->setTaxvat($this->getFormData()->getTaxvat())->toHtml() ?></li>
+            <?php //endif ?>
+            <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+            <?php if ($_gender->isEnabled()): ?>
+                <li><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?></li>
+            <?php endif ?>
+			
+			<?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+            <?php //if ($_dob->isEnabled()): ?>
+                <li><?php echo $_dob->setDate($this->getFormData()->getDob())->toHtml() ?></li>
+				 <p class="msgcampo msgdob1" style="display:none;">Informe um mês entre 01 e 12</p>
+                 <p class="msgcampo msgdob2" style="display:none;">Informe um dia entre 01 e 31</p>
+                 <p class="msgcampo msgdob3" style="display:none;">Informe um dia entre 01 e 30</p>
+                 <p class="msgcampo msgdob4" style="display:none;">Informe um dia entre 01 e 28</p>
+                 <p class="msgcampo msgdob5" style="display:none;">Informe um dia entre 01 e 29</p>
+                 <p class="msgcampo msgdob6" style="display:none;">Informe um ano menor que o ano atual</p>
+            <?php //endif ?>
+
+            <?php
+			$company = Mage::getStoreConfig('onepagecheckout/outrasopcoes/companyregistro');
+			if ($company !== 'hidden') : ?>
+                <li>
+	                <label for="empresa" <?php if ( $company  === 'required' ){ echo 'class="required"'; }?> > <?php if ( $company  === 'required' ){ /*echo '<em>*</em>'*/; }?><?php echo $this->__('Empresa') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="empresa" id="empresa"  title="<?php echo $this->__('Empresa'); ?>" class="input-text <?php if($company === 'required'){ echo ' required-entry';} ?>" />
+                    </div>
+                </li>
+            <?php endif; ?>
+ <?php if ($this->isNewsletterEnabled()): ?>
+                <li class="control">
+                    <div class="input-box">
+                        <input checked="checked" type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
+                    </div>
+                    <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
+                </li>
+                <?php endif ?>
+            </ul>
+        </div>
+    <?php //if($this->getShowAddressFields()): ?>
+        <div class="fieldset infoendereco" style=" display:none;">
+            <input type="hidden" name="create_address" value="1" />
+            <h2 class="legend"><?php echo $this->__('Address Information') ?></h2>
+            <ul class="form-list">
+                <li class="fields">
+                    <div class="field colcampo" style="display:none;">
+                        <label for="company"><?php echo $this->__('Company') ?></label>
+                        <div class="input-box">
+                            <input type="text" name="company" id="company" value="<?php echo $this->htmlEscape($this->getFormData()->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="input-text" />
+                        </div>
+                    </div>
+                    <div class="field colcampo">
+                        <label for="telephone"><!--<em>*</em>-->Telefone/Celular - Contato 1*<?php //echo $this->__('Telephone') ?></label>
+                        <div class="input-box">
+                            <input type="text" name="telephone" id="telephone" value="<?php echo $this->htmlEscape($this->getFormData()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text tamcampo" />
+                            <p class="msgcampo teleoucel" style=" display:none; width:500px;">É necessário o preenchimento do telefone fixo ou celular!</p>
+                        </div>
+                    </div>
+                    <div class="field colcampo">
+
+                    <label for="fax">Telefone/Celular - Contato 2<?php //echo $this->__('Fax') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="fax" id="fax" title="<?php echo $this->__('Fax') ?>" value="<?php echo $this->escapeHtml($this->getAddress()->getFax()) ?>" class="tamcampo input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('fax') ?>" />
+                    </div>
+                </div>
+                </li>
+                <li class="fields">
+            <div class="field" style="width:100%;">
+                        <label for="zip" class="required"><!--<em>*</em>--><?php echo $this->__('Zip/Postal Code') ?>*</label>
+                        <div class="input-box" style=" width:100%;">
+<!--                            <input type="text" name="postcode" value="<?php //echo $this->htmlEscape($this->getFormData()->getPostcode()) ?>" title="<?php //echo $this->__('Zip/Postal Code') ?>" id="zip" class="input-text validate-zip-international tracoAtivo required-entry" />-->
+<input type="text" name="postcode" id="billing:postcode" value="<?php echo $this->escapeHtml($this->getAddress()->getPostcode()) ?>" title="<?php echo $this->__('Zip/Postal Code') ?>"  class="input-text validate-zip-international tracoAtivo camporespons <?php echo $this->helper('customer/address')->getAttributeValidationClass('postcode') ?>"  onblur="buscarEndereco('<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>','billing');" style="float:left; margin-right:20px;"/>
+<p style="float:left;"><a href="http://www.buscacep.correios.com.br/" target="_blank" style=" font-size:10px; text-decoration:none;" >Não sei meu CEP</a></p>
+<p class="msgcampo msgcep" style=" display:none;">CEP não encontrado!</p>
+                        </div>
+                    </div>
+                    </li>
+                <li class="wide colcampog">
+                    <label for="billing:street1" class="required"><!--<em>*</em>--><?php echo $this->__('Street Address') ?>*</label>
+                    <div class="input-box">
+                        <input type="text" name="street[]" maxlength="80" value="<?php echo $this->htmlEscape($this->getFormData()->getStreet(1)) ?>" title="<?php echo $this->__('Street Address') ?>" id="billing:street1" class="input-text required-entry camporespons" />
+                    </div>
+                </li>
+                 <li class="fields colcampop">
+                 <div class="field">
+                    <label for="billing:street2" class="required"><!--<em>*</em>--><?php echo "Número"//$this->__('Street Address') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="street[]" maxlength="10" value="<?php echo $this->htmlEscape($this->getFormData()->getStreet(2)) ?>" title="<?php echo $this->__('Street Address') ?>" id="billing:street2" class="input-text required-entry" />
+                    </div>
+                    </div>
+                </li>
+                 <li class="fields colcampo">
+                 <div class="field">
+                    <label for="billing:street3"><!--<em>*</em>--><?php echo "Complemento"//$this->__('Street Address') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="street[]" maxlength="50" value="<?php echo $this->htmlEscape($this->getFormData()->getStreet(3)) ?>" title="<?php echo $this->__('Street Address') ?>" id="billing:street3" class="tamcampo input-text camporespons" />
+                    </div>
+                    </div>
+                </li>
+                 <li class="fields colcampo">
+                    <label for="billing:bairro" class="required"><!--<em>*</em>--><?php echo "Bairro*"//$this->__('Street Address') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="street[]" maxlength="50" value="<?php echo $this->htmlEscape($this->getFormData()->getStreet(4)) ?>" title="<?php echo $this->__('Street Address') ?>" id="billing:bairro" class="tamcampo input-text required-entry" />
+                    </div>
+                </li>
+            <?php //for ($_i=2, $_n=$this->helper('customer/address')->getStreetLines(); $_i<=$_n; $_i++): ?>
+               <!--<li class="wide">
+               <label for="street_1" class="required">--><!--<em>*</em>--><!--<?php //echo "Número"//$this->__('Street Address') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="street[]" value="<?php //echo $this->htmlEscape($this->getFormData()->getStreet($_i)) ?>" title="<?php //echo $this->__('Street Address %s', $_i) ?>" id="street_<?php //echo $_i?>" class="input-text" />
+                    </div>
+                </li>-->
+            <?php //endfor ?>
+                <li class="fields">
+                    <div class="field">
+                        <label for="billing:city" class="required"><!--<em>*</em>--><?php echo $this->__('City') ?>*</label>
+                        <div class="input-box">
+                            <input type="text" name="city" maxlength="50" value="<?php echo $this->htmlEscape($this->getFormData()->getCity()) ?>" title="<?php echo $this->__('City') ?>" class="input-text required-entry camporespons" id="billing:city" />
+                        </div>
+                    </div>
+                    <div class="field" style=" display:block !important;">
+                        <label for="billing:region_id" class="required"><!--<em>*</em>--><?php echo $this->__('State/Province') ?>*</label>
+                        <div class="input-box">
+                            <select id="billing:region_id" name="billing[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select camporespons">
+                                <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                            </select>
+                            <script type="text/javascript">
+                            //<![CDATA[
+                                //$('region_id').setAttribute('defaultValue', "<?php //echo $this->getFormData()->getRegionId() ?>");
+								$('billing:region_id').setAttribute('defaultValue',  "<?php echo $this->escapeHtml($this->getAddress()->getRegionId()) ?>");
+                            //]]>
+                            </script>
+                            <input type="text" id="region" name="region" value="<?php echo $this->htmlEscape($this->getFormData()->getRegion()) ?><?php //echo $this->htmlEscape($this->getRegion()) ?>" title="<?php echo $this->__('State/Province') ?>" class="input-text" style="display:none;" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="country" class="required"><!--<em>*</em>--><?php echo $this->__('Country') ?>*</label>
+                        <div class="input-box">
+                            <?php echo $this->getCountryHtmlSelect() ?>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <input type="hidden" name="default_billing" value="1" />
+            <input type="hidden" name="default_shipping" value="1" />
+        </div>
+    <?php //endif; ?>
+        <div class="fieldset dadosacesso" style=" display:none;">
+            <h2 class="legend"><?php echo $this->__('Login Information') ?></h2>
+            <ul class="form-list">
+            <li style="display:none;"><div class="geradorsenha" style="width:130px; float:left;"><a href="#" style="text-decoration:none;">Gerar Senha Segura?</a></div><div class="senhagerada" style="width:400px; float:left;display:none;"">Senha gerada: <b>&nbsp;</b></div></li>
+                <li class="fields">
+                    <div class="field colcampo" style="float:left;">
+                        <label for="password" class="required"><!--<em>*</em>--><?php echo $this->__('Password') ?>*</label>
+                        <div class="input-box">
+                            <input type="password" maxlength="30" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="inputpass tamcampo input-text required-entry validate-password" />
+                        </div>
+                    </div>
+                    <div class="field colcampo" style="float:left;">
+                        <label for="confirmation" class="required"><!--<em>*</em>--><?php echo $this->__('Confirm Password') ?>*</label>
+                        <div class="input-box">
+                            <input type="password" maxlength="30" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="tamcampo input-text required-entry validate-cpassword" />                            
+                            <p class="msgcampo msgsenhas" style="display:none;">As senhas não se correspondem!</p>
+                        </div>
+                    </div>
+                </li>
+                <?php echo $this->getChildHtml('persistent.remember.me'); ?>
+            </ul>
+            <?php echo $this->getChildHtml('persistent.remember.me.tooltip'); ?>
+        </div>
+        <div class="buttons-set">
+            <!--<p class="required"><?php //echo $this->__('* Required Fields') ?></p>-->
+            <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="back-link"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+            <button type="submit" disabled="disabled" title="<?php echo $this->__('Submit') ?>" class="button"><span class="btdesativado"><span class="btdesativado"><?php echo $this->__('Submit') ?></span></span></button>
+            <p class="msgcampo btsubmit">Por favor preencha todos os campos obrigatórios (*) para prosseguir!</p>
+        </div>
+        <?php if (@Mage::helper('checkout')->isContextCheckout()): ?>
+            <input name="context" type="hidden" value="checkout" />
+        <?php endif; ?>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var dataForm = new VarienForm('form-validate', true);
+        <?php //if($this->getShowAddressFields()): ?>
+        //new RegionUpdater('country', 'region', 'region_id', <?php //echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+		new RegionUpdater('country', 'region', 'billing:region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+        <?php //endif; ?>
+    //]]>
+    </script>
+<script type="text/javascript">
+//<![CDATA[
+    // Adicionar validacao de cpf e cnpj ao campo Taxvat
+    Validation.add('validar_cpf', 'O CPF ou CNPJ informado \xE9 invalido', function(v){return validaCPF(v,0);});
+//]]>
+</script>
+</div>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/cad.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/reg.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/tipo.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/inputs.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/forcapass.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/cnpj.js"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/gerasenha.js"></script>
+<!-- consulta cnpj -->
+<div id="consultaexterna"></div>

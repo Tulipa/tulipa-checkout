@@ -99,15 +99,3 @@
 //]]>
 </script>
 <?php endif; ?>
-<script>
-//personalizando campos radio e checkbox
-tulipa('div#checkout-shipping-method-load input').on('click', function(event){
-tulipa.blockUI({
-            message: 'Carregando, aguarde...',
-			css: {border: 'none', backgroundColor: 'none', color: '#fff' }
-        	});
-setTimeout(function() {
-tulipa.unblockUI();
-}, 3000)
-});
-</script>

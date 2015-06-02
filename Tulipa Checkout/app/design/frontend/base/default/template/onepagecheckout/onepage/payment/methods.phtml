@@ -25,22 +25,3 @@ payment.init();
 //]]>
 </script>
 <?php endif; ?>
-<script>
-tulipa(document).ready(function() {
-//personalizando campos radio e checkbox
-tulipa('div#payment-method input[id*="p_method_"]').on('click', function(event){
-tulipa.blockUI({
-            message: 'Carregando, aguarde...',
-			css: {border: 'none', backgroundColor: 'none', color: '#fff' }
-        	});
-setTimeout(function() {
-	checkout.update({'review': 1});
-	//desbloqueando página
-	setTimeout(function() {
-		tulipa.unblockUI();
-	}, 3000);
-},3000);
-});
-//fim document ready
-});
-</script>

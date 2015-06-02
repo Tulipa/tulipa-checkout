@@ -177,7 +177,7 @@ div.full.tipopessoa{height: 15px;}
 * html .d-sh-tl, * html .d-sh-tr { padding-right:42px; }
 /* IE7 fix */
 *:first-child+html .onepagecheckout-window { width: 500px; }
-body.onepagecheckout-index-index div.col-1,body.onepagecheckout-index-index div.col-2,#onepagecheckout_orderform .col3-set .col-3,#onepagecheckout_orderform .col3-set .col-2 p.newsletter,#onepagecheckout_orderform .col3-set .col-2 div#checkout-coupon-discount-load,#onepagecheckout_orderform .col3-set .col-2 div#payment-method{ display:none;}
+body.onepagecheckout-index-index div.col-1,body.onepagecheckout-index-index div.col-2,#onepagecheckout_orderform .col3-set .col-3,#onepagecheckout_orderform .col3-set .col-2 p.newsletter,#onepagecheckout_orderform .col3-set .col-2 div#checkout-coupon-discount-load,#onepagecheckout_orderform .col3-set .col-2 div#payment-method{ /*display:none;*/}
 body.onepagecheckout-index-index div.col-1,body.onepagecheckout-index-index div.col-2,body.onepagecheckout-index-index div.col-3{ padding:10px;}
 body.onepagecheckout-index-index div.col-1:hover,body.onepagecheckout-index-index div.col-2:hover,body.onepagecheckout-index-index div.col-3:hover{-webkit-border-radius: 2px 2px 2px 2px;
 border-radius: 2px 2px 2px 2px;-webkit-box-shadow: 0px 0px 10px 0px #ccc;box-shadow: 0px 0px 10px 0px #ccc;}

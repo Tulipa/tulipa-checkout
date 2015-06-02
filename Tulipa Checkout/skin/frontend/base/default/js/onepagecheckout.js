@@ -392,11 +392,21 @@ ShippingMethod.prototype = {
     addObservers: function () {
         $$('input[name="shipping_method"]').each(function (el) {
             el.observe('click', function () {
-                checkout.update({
+                tulipa.blockUI({
+                    message: 'Atualizando valores, aguarde...',
+    			    css: {border: 'none', backgroundColor: 'none', color: '#fff' }
+            	});
+                checkout.update({                   
                     'review': 1
                 })
-				//mostrar as formas de pagamento
-				/*tulipa("#onepagecheckout_orderform .col3-set .col-2 div#payment-method").fadeIn("slow");*/
+                setTimeout(function() {
+                     checkout.update({
+                        'payment-method': 1
+   				     });
+                    setTimeout(function() {
+                        tulipa.unblockUI();
+                    }, 5000);
+                },10000);
             })
         })
     },
@@ -423,7 +433,8 @@ Payment.prototype = {
     beforeValidateFunc: $H({}),
     afterValidateFunc: $H({}),
     initialize: function (container) {
-        this.cnt = container
+        this.cnt = container;
+        this.addObservers();
     },
     addBeforeInitFunction: function (code, func) {
         this.beforeInitFunc.set(code, func)
@@ -435,33 +446,22 @@ Payment.prototype = {
     },
     addObservers: function () {
         $$('input[name="payment[method]"]').each(function (el) {
-            el.observe('click', function () {
-				//loading
-				tulipa.blockUI({
-            	message: '<h1>Carregando, aguarde...</h1>',
-				css: {border: 'none', padding: '15px', backgroundColor: '#E3EAEC', '-webkit-border-radius': '10px 10px 10px 10px','border-radius': '10px 10px 10px 10px', color: '#fff' }
-        		});
-					
-                //checkout.update({
-                //    'payment-method': 1
-                //});
-				setTimeout(function() {
-				checkout.update({
-				'payment-method': 1,
-       			'review': 1
-   				});
-				},1000);
-                setTimeout(function(){
-                    //checkout.update({
-                    //'payment-method': 1
-                    //});
-					//mostrar cupom e assinatura de newsletter
-					/*tulipa("#onepagecheckout_orderform .col3-set .col-2 div#checkout-coupon-discount-load").fadeIn("slow");
-					tulipa("#onepagecheckout_orderform .col3-set .col-2 p.newsletter").fadeIn("slow");
-					tulipa("#onepagecheckout_orderform .col3-set .col-3").fadeIn("slow");*/
-					//fim loading
-					tulipa.unblockUI(); 
-				}, 2000);
+            el.observe('click', function () {								
+                    tulipa.blockUI({
+                        message: 'Atualizando valores, aguarde...',
+    			        css: {border: 'none', backgroundColor: 'none', color: '#fff' }
+            	    });
+                    checkout.update({
+               			'payment-method': 1                       
+       				});
+                    setTimeout(function() {
+                        checkout.update({
+                            'review': 1
+       				    });
+                        setTimeout(function() {
+                            tulipa.unblockUI();
+                        }, 5000);
+                    },10000);
             })
         })
     },

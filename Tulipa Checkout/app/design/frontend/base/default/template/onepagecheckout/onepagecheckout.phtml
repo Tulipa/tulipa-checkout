@@ -67,15 +67,12 @@ $seq_http	= (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on');
     <div class="col-1">
         <?php echo $this->getChildHtml('billing.address') ?>
         <?php echo $this->getChildHtml('shipping.address') ?>
-         <a href="#frete"><div id="btavancabilling" class="btavancarckt">1 - Avançar para Entrega</div></a>
     </div>
     <div class="col-2">
     	<a name="frete"></a>
         <?php echo $this->getChildHtml('shipping.method') ?>
-        <a href="#pagamento"><div id="btavancaentrega" class="btavancarckt">2 - Avançar para Pagamento</div></a>
 		<a name="pagamento"></a>
         <?php echo $this->getChildHtml('payment.method') ?>
-        <a href="#cupom" ><div id="bttemcupom" class="btavancarckt" style="display:none;">3 - Possui Cupom de Desconto?</div></a>  
         <a name="cupom"></a>
          <div id="checkout-coupon-discount-load">
             <?php echo $this->getChildHtml('coupon') ?>
@@ -101,7 +98,6 @@ $seq_http	= (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on');
                 </label>
             </p>
         <?php endif; ?>
-        <a href="#resumocompra"><div id="btavancapagamento" class="btavancarckt" style="display:none;">4 - Avançar para Resumo da Compra</div></a>  
     </div>
     <div class="col-3">
    		<a name="resumocompra"></a>

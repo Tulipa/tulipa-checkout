@@ -32,9 +32,9 @@ tulipa('input[id*="email"]').attr('autocomplete','off');
         tulipa("#region").val(vuf).change();
     });
 //copia o cpf pro taxvat
-	jQuery('#cpfcnpj').on('blur', function() {
-        cpf = jQuery(this).val();
-        jQuery("#taxvat").val(cpf);
+	tulipa('#cpfcnpj').on('blur', function() {
+        cpf = tulipa(this).val();
+        tulipa("#taxvat").val(cpf);
     });
 //fim document ready
 });

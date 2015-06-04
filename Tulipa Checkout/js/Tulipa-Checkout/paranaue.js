@@ -13,9 +13,9 @@
         tulipa("#newnome").val(prinome + ' ' + ultnome);
     }
 	//copia o cpf pro taxvat
-	jQuery("input[name*='billing[cpfcnpj]']").on('blur', function() {
-        cpf = jQuery(this).val();
-        jQuery("input[name*='billing[taxvat]']").val(cpf);
+	tulipa("input[name*='billing[cpfcnpj]']").on('blur', function() {
+        cpf = tulipa(this).val();
+        tulipa("input[name*='billing[taxvat]']").val(cpf);
     });
 //desativando autocomplete do email
 tulipa('input[name*="email"]').attr('autocomplete','off');	

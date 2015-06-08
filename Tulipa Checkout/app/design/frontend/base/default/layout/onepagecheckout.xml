@@ -9,11 +9,7 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
         <reference name="head">
-           <!-- <action method="addItem" ifconfig="onepagecheckout/general/enabled"><type>skin_css</type><name>css/onepagecheckout.css</name></action>
-            <action method="addItem" ifconfig="onepagecheckout/general/jquery"><type>skin_js</type><name>deivison/jquery.js</name></action>
-            <action method="addItem" ifconfig="onepagecheckout/general/jquery"><type>skin_js</type><name>deivison/jquery.maskedinput.min.js</name></action>
-			<action method="addItem" ifconfig="onepagecheckout/general/jquery"><type>skin_js</type><name>deivison/jquery.autotab-1.1b.js</name></action>
-            <action method="addItem" ifconfig="onepagecheckout/general/jquery"><type>skin_js</type><name>deivison/deivison.js</name></action>-->
+            <action method="addJs"><script>Tulipa-Checkout/jquery.js</script></action>
         </reference>
 
 
@@ -104,12 +100,18 @@
     </onepagecheckout_index_failure>
     
     <customer_account_create>
+        <reference name="head">
+            <action method="addJs"><script>Tulipa-Checkout/jquery.js</script></action>
+        </reference>
         <reference name="customer_form_register">
             <action method="setTemplate"><template>onepagecheckout/persistent/customer/form/register.phtml</template></action>
         </reference>
     </customer_account_create>
     
     <customer_account_edit>
+        <reference name="head">
+            <action method="addJs"><script>Tulipa-Checkout/jquery.js</script></action>
+        </reference>
     	<reference name="customer_edit">
     		<action method="setTemplate"><template>onepagecheckout/persistent/customer/form/edit.phtml</template></action>
     	</reference>
@@ -120,6 +122,9 @@
     <!-- Aqui foi foda! -->
 
     <customer_address_form translate="label">
+        <reference name="head">
+            <action method="addJs"><script>Tulipa-Checkout/jquery.js</script></action>
+        </reference>
         <reference name="my.account.wrapper">
             <block type="customer/address_edit" name="customer_address_edit" template="onepagecheckout/persistent/customer/address/edit.phtml"/>
         </reference>

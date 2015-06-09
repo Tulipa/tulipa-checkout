@@ -392,7 +392,7 @@ ShippingMethod.prototype = {
     addObservers: function () {
         $$('input[name="shipping_method"]').each(function (el) {
             el.observe('click', function () {
-                tulipa.blockUI({
+                jQuery.blockUI({
                     message: 'Atualizando valores, aguarde...',
     			    css: {border: 'none', backgroundColor: 'none', color: '#fff' }
             	});
@@ -404,7 +404,7 @@ ShippingMethod.prototype = {
                         'payment-method': 1
    				     });
                     setTimeout(function() {
-                        tulipa.unblockUI();
+                        jQuery.unblockUI();
                     }, 5000);
                 },10000);
             })
@@ -447,7 +447,7 @@ Payment.prototype = {
     addObservers: function () {
         $$('input[name="payment[method]"]').each(function (el) {
             el.observe('click', function () {								
-                    tulipa.blockUI({
+                    jQuery.blockUI({
                         message: 'Atualizando valores, aguarde...',
     			        css: {border: 'none', backgroundColor: 'none', color: '#fff' }
             	    });
@@ -459,7 +459,7 @@ Payment.prototype = {
                             'review': 1
        				    });
                         setTimeout(function() {
-                            tulipa.unblockUI();
+                            jQuery.unblockUI();
                         }, 5000);
                     },10000);
             })

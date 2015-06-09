@@ -47,7 +47,7 @@ $has_addr	= $this->customerHasAddresses();
                         <?php if ($logged)  : //se logado importa valor do tipo de pessoa?>
 						<script type="text/javascript">
 						//<![CDATA[
-                           tulipa('#tipopessoa').children("option:contains('<?php echo $this->htmlEscape($this->getCustomer()->getTipopessoa()) ?>')").attr('selected', 'selected');
+                           jQuery('#tipopessoa').children("option:contains('<?php echo $this->htmlEscape($this->getCustomer()->getTipopessoa()) ?>')").attr('selected', 'selected');
 						//]]>
 						</script>
                          <?php endif; ?>                     
@@ -503,7 +503,7 @@ $has_addr	= $this->customerHasAddresses();
 
 
 <script type="text/javascript">
-      var temcep = tulipa('input[name*="[postcode]"]').val();
+      var temcep = jQuery('input[name*="[postcode]"]').val();
       if(temcep != ""){
           buscarEndereco('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>','billing');
       }

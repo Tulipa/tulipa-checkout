@@ -1,5 +1,4 @@
 <link href="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/css/onepagecheckout.css" rel="stylesheet">
-<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/jquery.js"></script>
 <script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/jquery.maskedinput.min.js"></script>
 <script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/jquery.autotab-1.1b.js"></script>
 <script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/deivison.js"></script>
@@ -15,7 +14,7 @@
 <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/completer.min.js"></script>
 <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/pGenerator.jquery.js"></script>
 <script>
-tulipa.blockUI({
+jQuery.blockUI({
             message: 'Carregando, aguarde...',
 			css: {border: 'none', backgroundColor: 'none', color: '#fff' }
         	});
@@ -141,36 +140,36 @@ $seq_http	= (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on');
 <script>
 /*var largjanela;
 function tamjanela(){ //called on viewer reload, screen resize or scroll
-    largjanela = tulipa(window).width(); //retrieve current window width
+    largjanela = jQuery(window).width(); //retrieve current window width
 };
 tamjanela();
-tulipa(window).resize(function() {
+jQuery(window).resize(function() {
   tamjanela();
 });
-tulipa(window).scroll(function() {
+jQuery(window).scroll(function() {
 	  if(largjanela>960){
-		if(tulipa(this).scrollTop()>300){
-			altura=tulipa(this).scrollTop();
+		if(jQuery(this).scrollTop()>300){
+			altura=jQuery(this).scrollTop();
 			altura=altura-350;
-			tulipa('div.col-3').addClass('total-flutuante');
-			tulipa('div.col-3').css('top',altura+'px');
+			jQuery('div.col-3').addClass('total-flutuante');
+			jQuery('div.col-3').css('top',altura+'px');
 		}
 		else{
-			tulipa('div.col-3').removeClass('total-flutuante');
+			jQuery('div.col-3').removeClass('total-flutuante');
 		}
 
 	}else{
-		tulipa('div.col-3').removeClass('total-flutuante');
+		jQuery('div.col-3').removeClass('total-flutuante');
 		}
 });	*/ 
 //login com fancybox
-tulipa("a#fancyLink,a.onepagecheckout_loginlink").fancybox({
+jQuery("a#fancyLink,a.onepagecheckout_loginlink").fancybox({
         'href'   : '#onepagecheckout_loginbox',
         'titleShow'  : false,
         'transitionIn'  : 'elastic',
         'transitionOut' : 'elastic'
     });
-tulipa("a#esquecilink").fancybox({
+jQuery("a#esquecilink").fancybox({
         'href'   : '#onepagecheckout_forgotbox',
         'titleShow'  : false,
         'transitionIn'  : 'elastic',

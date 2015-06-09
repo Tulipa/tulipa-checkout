@@ -1,9 +1,9 @@
-tulipa(document).ready(function(){
+jQuery(document).ready(function(){
 // mascarando campos
-	tulipa('input[name*="telephone"]').mask("(99) 9999-9999");
-	tulipa('input[name*="fax"]').focusout(function() {
+	jQuery('input[name*="telephone"]').mask("(99) 9999-9999");
+	jQuery('input[name*="fax"]').focusout(function() {
     var phone, element;
-    element = tulipa(this);
+    element = jQuery(this);
     element.unmask();
     phone = element.val().replace(/\D/g, '');
     if (phone.length > 10) {
@@ -13,25 +13,25 @@ tulipa(document).ready(function(){
     }
    	}).trigger('focusout');
 //cpf e cnpj
-	if (tulipa('#tipopessoa').val() == 'Fisica') {
-		tulipa('.validar_cpf').mask("999.999.999-99");
-	} else if (tulipa('#tipopessoa').val() == 'Juridica') {
-		tulipa('.validar_cpf').mask("99.999.999/9999-99");
+	if (jQuery('#tipopessoa').val() == 'Fisica') {
+		jQuery('.validar_cpf').mask("999.999.999-99");
+	} else if (jQuery('#tipopessoa').val() == 'Juridica') {
+		jQuery('.validar_cpf').mask("99.999.999/9999-99");
 	}			
 //Limita os campos da data nascimento
-	tulipa('input[name*="day"]').attr('maxlength','2');
-	tulipa('input[name*="month"]').attr('maxlength','2');
-	tulipa('input[name*="year"]').attr('maxlength','4');
-	tulipa('input[name*="postcode"]').attr('maxlength','8');
-	tulipa('input[name*="day"], input[name*="month"],input[name*="year"]').autotab_magic().autotab_filter('numeric');
+	jQuery('input[name*="day"]').attr('maxlength','2');
+	jQuery('input[name*="month"]').attr('maxlength','2');
+	jQuery('input[name*="year"]').attr('maxlength','4');
+	jQuery('input[name*="postcode"]').attr('maxlength','8');
+	jQuery('input[name*="day"], input[name*="month"],input[name*="year"]').autotab_magic().autotab_filter('numeric');
 //Ao se coloca o "-" no CEP não irá calcular o frete caso use o módulo Matrix Rates, pois ele não trabalha com o "-"
 //Essa opção é caso queira que toda vez ao se entrar no campo ele limpe-o
-    /*tulipa('input[class*="tracoAtivo"]').focus(function(){
-		tulipa(this).val('');
+    /*jQuery('input[class*="tracoAtivo"]').focus(function(){
+		jQuery(this).val('');
 	});*/
 //Script do traço do cep
-	tulipa('input[class*="tracoAtivo"]').keydown( function(e){
-		tulipa(this).attr('maxlength','9');
+	jQuery('input[class*="tracoAtivo"]').keydown( function(e){
+		jQuery(this).attr('maxlength','9');
 			if (e.keyCode >= 9){
 				length = this.value.length;
 				if (length == 5)
@@ -104,17 +104,17 @@ var host,quale,cep,prefix,obj;
 //Busca de CEP na base dos correios por Ajax
 function buscarEndereco(host, quale) {
 //loading
-		tulipa.blockUI({
+		jQuery.blockUI({
 			message: 'Buscando CEP, aguarde...',
 			css: {border: 'none', backgroundColor: 'none', color: '#fff' }
         });
 		prefix = "#"+ quale + "\\:",
-		cep = tulipa(prefix+'postcode').val().replace(/[^0-9]+/g, '');
+		cep = jQuery(prefix+'postcode').val().replace(/[^0-9]+/g, '');
 		if (cep.toString().length != 8) {
-			tulipa.unblockUI();
+			jQuery.unblockUI();
 			return false;
 		}
-		tulipa.ajax({
+		jQuery.ajax({
 				url: host + 'frontend/base/default/deivison/buscacep.php?cep=' + cep,
 				type:'GET',
 				dataType: 'html',
@@ -123,21 +123,21 @@ function buscarEndereco(host, quale) {
 		.done(function(respostaCEP){
 				//var obj;
 				//while(!obj){
-				obj = tulipa.parseJSON(respostaCEP);
+				obj = jQuery.parseJSON(respostaCEP);
 				//}
-				tulipa(prefix+'street1').val(obj.logradouro);
-				tulipa(prefix+'street4').val(obj.bairro);
-				tulipa(prefix+'bairro').val(obj.bairro);
-				tulipa(prefix+'city').val(obj.cidade);
-				tulipa('select[id*="region_id"]').val(obj.codigo);
-				tulipa('input[id*="region"]').val(obj.codigo);
-				tulipa(prefix+'postcode').removeClass('campoobr');
-				tulipa('.msgcep').hide();
-				tulipa(prefix+'street2').focus();
+				jQuery(prefix+'street1').val(obj.logradouro);
+				jQuery(prefix+'street4').val(obj.bairro);
+				jQuery(prefix+'bairro').val(obj.bairro);
+				jQuery(prefix+'city').val(obj.cidade);
+				jQuery('select[id*="region_id"]').val(obj.codigo);
+				jQuery('input[id*="region"]').val(obj.codigo);
+				jQuery(prefix+'postcode').removeClass('campoobr');
+				jQuery('.msgcep').hide();
+				jQuery(prefix+'street2').focus();
 				if(!obj.logradouro){
-					tulipa('.msgcep').show();
-					//tulipa(prefix+'postcode').addClass('campoobr').focus();
-					tulipa(prefix+'postcode').addClass('campoobr');
+					jQuery('.msgcep').show();
+					//jQuery(prefix+'postcode').addClass('campoobr').focus();
+					jQuery(prefix+'postcode').addClass('campoobr');
 				}
 				//console.log(obj);
 		})
@@ -145,6 +145,6 @@ function buscarEndereco(host, quale) {
 					console.log('Falha!');
 		})
 		.always(function(){
-					tulipa.unblockUI(); 
+					jQuery.unblockUI(); 
 		});
 };

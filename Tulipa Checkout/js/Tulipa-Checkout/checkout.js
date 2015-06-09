@@ -1,19 +1,19 @@
-﻿tulipa(document).ready(function() {
+﻿jQuery(document).ready(function() {
 // desativando enter
-    tulipa('#onepagecheckout_orderform').on('keydown', 'input', function(event) {
+    jQuery('#onepagecheckout_orderform').on('keydown', 'input', function(event) {
         if (event.which == 13) {
             event.preventDefault();
-            var tcampo = tulipa(event.target);
+            var tcampo = jQuery(event.target);
             var index = parseFloat(tcampo.attr('data-index'));
-            tulipa('[data-index="' + (index + 1).toString() + '"]').focus();
+            jQuery('[data-index="' + (index + 1).toString() + '"]').focus();
         }
     });
 //desbloqueando página
 setTimeout(function() {
-        tulipa.unblockUI();
+        jQuery.unblockUI();
 }, 1000);
 setTimeout(function() {
-	tulipa("input[name*='email']").completer({
+	jQuery("input[name*='email']").completer({
 		separator: "@",
 		source: ["gmail.com", "hotmail.com", "outlook.com","live.com","yahoo.com.br"]
 	});

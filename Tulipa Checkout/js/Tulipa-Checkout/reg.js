@@ -1,54 +1,54 @@
-﻿tulipa(document).ready(function() {
+﻿jQuery(document).ready(function() {
     var dpes, dend, dsen = false;
     mostraend();
 	mostrasenha();
 	senhasiguais();
 	verteloucel();
 	formok();
-	tulipa('label[for*="street2"]').text('Número*');
+	jQuery('label[for*="street2"]').text('Número*');
     //desbloqueando página
     setTimeout(function() {
-        tulipa.unblockUI();
+        jQuery.unblockUI();
         //exibindo form
-        tulipa('div.dadospessoais').fadeIn('slow');
+        jQuery('div.dadospessoais').fadeIn('slow');
 		setTimeout(function() {
-			tulipa("input[name*='email']").completer({
+			jQuery("input[name*='email']").completer({
 				separator: "@",
 				source: ["gmail.com", "hotmail.com", "outlook.com","live.com","yahoo.com.br"]
 			});
 		}, 1000);
     }, 1000);
-	tulipa("#newnome,#email_address,#rg,#cpfcnpj,#day,#month,#year,#ie").bind("change keyup input",function() {
+	jQuery("#newnome,#email_address,#rg,#cpfcnpj,#day,#month,#year,#ie").bind("change keyup input",function() {
 		 mostraend();
 		 formok();
     });
-	tulipa('#telephone,#fax,input[name="postcode"],input[id*="street1"],input[id*="street2"],input[id*="bairro"],input[name="city"],#region').bind("change keyup input",function() {
+	jQuery('#telephone,#fax,input[name="postcode"],input[id*="street1"],input[id*="street2"],input[id*="bairro"],input[name="city"],#region').bind("change keyup input",function() {
 		 mostrasenha();
 		 formok();
     });
-    tulipa("#password,#confirmation").bind("change keyup input",function() {
+    jQuery("#password,#confirmation").bind("change keyup input",function() {
 		senhasiguais();
 		formok();
     });
-	tulipa("#fax,#telephone").bind("change keyup input",function() {
+	jQuery("#fax,#telephone").bind("change keyup input",function() {
 		verteloucel();
     });
 //fim document ready
 });
 function mostraend(){
 // Mostra Bloco de endereço
-	if (tulipa('#tipopessoa').val() == 'Fisica') {
-		if ((tulipa('#newnome').val() != '') && (tulipa('#email_address').val() != '') && (tulipa('#rg').val() != '') && (tulipa('#cpfcnpj').val() != '') && (tulipa('#day').val() != '') && (tulipa('#month').val() != '') && (tulipa('#year').val() != '')) {
+	if (jQuery('#tipopessoa').val() == 'Fisica') {
+		if ((jQuery('#newnome').val() != '') && (jQuery('#email_address').val() != '') && (jQuery('#rg').val() != '') && (jQuery('#cpfcnpj').val() != '') && (jQuery('#day').val() != '') && (jQuery('#month').val() != '') && (jQuery('#year').val() != '')) {
 //exibindo form
-			tulipa('div.infoendereco').fadeIn('slow');
+			jQuery('div.infoendereco').fadeIn('slow');
 			dpes = true;
 		} else {
 			dpes = false;
 		}
-	} else if (tulipa('#tipopessoa').val() == 'Juridica') {
-		if ((tulipa('#newnome').val() != '') && (tulipa('#email_address').val() != '') && (tulipa('#cpfcnpj').val() != '')) {
+	} else if (jQuery('#tipopessoa').val() == 'Juridica') {
+		if ((jQuery('#newnome').val() != '') && (jQuery('#email_address').val() != '') && (jQuery('#cpfcnpj').val() != '')) {
 //exibindo form
-			tulipa('div.infoendereco').fadeIn('slow');
+			jQuery('div.infoendereco').fadeIn('slow');
 			dpes = true;
 		} else {
 			dpes = false;
@@ -59,21 +59,21 @@ function formok(){
 // libera submit
 	if (dpes && dend && dsen) {
 		//exibindo bt de cadastro
-		tulipa('form#form-validate div.buttons-set button.button[type="submit"]').removeAttr('disabled');
-		tulipa('form#form-validate div.buttons-set button.button span').removeClass('btdesativado');
-		tulipa('p.btsubmit').hide();
+		jQuery('form#form-validate div.buttons-set button.button[type="submit"]').removeAttr('disabled');
+		jQuery('form#form-validate div.buttons-set button.button span').removeClass('btdesativado');
+		jQuery('p.btsubmit').hide();
 	} else {
 		//bloqueando bt de cadastro
-		tulipa('form#form-validate div.buttons-set button.button[type="submit"]').attr('disabled', 'disabled');
-		tulipa('form#form-validate div.buttons-set button.button span').addClass('btdesativado');
-		tulipa('p.btsubmit').show();
+		jQuery('form#form-validate div.buttons-set button.button[type="submit"]').attr('disabled', 'disabled');
+		jQuery('form#form-validate div.buttons-set button.button span').addClass('btdesativado');
+		jQuery('p.btsubmit').show();
 	}	
 }
 function mostrasenha(){
 	// Mostra senha
-	if (((tulipa('#telephone').val() != '') && (tulipa('input[name="postcode"]').val() != '') && (tulipa('input[id*="street1"]').val() != '') && (tulipa('input[id*="street2"]').val() != '') && (tulipa('input[id*="bairro"]').val() != '') && (tulipa('input[name="city"]').val() != '') && (tulipa('#region').val() != '')) || ((tulipa('#fax').val() != '') && (tulipa('input[name="postcode"]').val() != '') && (tulipa('input[id*="street1"]').val() != '') && (tulipa('input[id*="street2"]').val() != '') && (tulipa('input[id*="bairro"]').val() != '') && (tulipa('input[name="city"]').val() != '') && (tulipa('#region').val() != ''))) {
+	if (((jQuery('#telephone').val() != '') && (jQuery('input[name="postcode"]').val() != '') && (jQuery('input[id*="street1"]').val() != '') && (jQuery('input[id*="street2"]').val() != '') && (jQuery('input[id*="bairro"]').val() != '') && (jQuery('input[name="city"]').val() != '') && (jQuery('#region').val() != '')) || ((jQuery('#fax').val() != '') && (jQuery('input[name="postcode"]').val() != '') && (jQuery('input[id*="street1"]').val() != '') && (jQuery('input[id*="street2"]').val() != '') && (jQuery('input[id*="bairro"]').val() != '') && (jQuery('input[name="city"]').val() != '') && (jQuery('#region').val() != ''))) {
 		//exibindo form
-		tulipa('div.dadosacesso').fadeIn('slow');
+		jQuery('div.dadosacesso').fadeIn('slow');
 		dend = true;
 	} else {
 		dend = false;
@@ -82,33 +82,33 @@ function mostrasenha(){
 }
 function senhasiguais(){
 // senhas são iguais?
-	if ((tulipa('#password').val() == "") && (tulipa('#confirmation').val() == "")) {
-		tulipa('p.msgsenhas').fadeOut("slow");
-		tulipa('#confirmation').removeClass('campoobr');
+	if ((jQuery('#password').val() == "") && (jQuery('#confirmation').val() == "")) {
+		jQuery('p.msgsenhas').fadeOut("slow");
+		jQuery('#confirmation').removeClass('campoobr');
 		dsen = false;
-	} else if ((tulipa('#password').val() == tulipa('#confirmation').val()) && (tulipa('#password').val() != "") && (tulipa('#confirmation').val() != "")) {
-		tulipa('p.msgsenhas').fadeOut("slow");
-		tulipa('#confirmation').removeClass('campoobr');
+	} else if ((jQuery('#password').val() == jQuery('#confirmation').val()) && (jQuery('#password').val() != "") && (jQuery('#confirmation').val() != "")) {
+		jQuery('p.msgsenhas').fadeOut("slow");
+		jQuery('#confirmation').removeClass('campoobr');
 		dsen = true;
 	} else {
-		tulipa('p.msgsenhas').fadeIn("slow");
-		tulipa('#confirmation').addClass('campoobr');
+		jQuery('p.msgsenhas').fadeIn("slow");
+		jQuery('#confirmation').addClass('campoobr');
 		dsen = false;
 	}
-	if ((tulipa('#password').val() == '') || (tulipa('#confirmation').val() == '')) {
+	if ((jQuery('#password').val() == '') || (jQuery('#confirmation').val() == '')) {
 		dsen = false;
 	}
 	formok();	
 }
 //checa se telefone ou celular está preenchido
 function verteloucel(){
-		if (tulipa("#telephone").val() == ""){
-			tulipa("#telephone").addClass('campoobr');
-			tulipa("p.msgcampo.teleoucel").fadeIn("slow");
+		if (jQuery("#telephone").val() == ""){
+			jQuery("#telephone").addClass('campoobr');
+			jQuery("p.msgcampo.teleoucel").fadeIn("slow");
 			dtel = false;
 		} else {
-			tulipa("p.teleoucel").fadeOut("slow");
-			tulipa("#telephone").removeClass('campoobr');
+			jQuery("p.teleoucel").fadeOut("slow");
+			jQuery("#telephone").removeClass('campoobr');
 			dtel = true;
 		}
 		formok();

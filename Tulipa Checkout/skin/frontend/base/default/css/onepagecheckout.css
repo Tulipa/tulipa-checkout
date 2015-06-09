@@ -19,8 +19,8 @@ color:#FFFFFF;font:bold 12px/20px Arial,Helvetica,sans-serif;height:20px !import
 .ptdivline{background: none !important;/*width: 996px !important;height: 52px !important;*/-moz-box-shadow: none !important;-webkit-box-shadow: none !important;box-shadow: none !important;margin: 0 !important;}
 .onepagecheckout_datafields{border-bottom:1px solid #CCCCCC;padding-bottom:20px; position:relative;}
 
-#onepagecheckout_orderform .col3-set .col-1{width:27%;}
-#onepagecheckout_orderform .col3-set .col-2{width:30%;margin-left:25px;}
+#onepagecheckout_orderform .col3-set .col-1,#onepagecheckout_orderform .col3-set .col-2,#onepagecheckout_orderform .col3-set .col-3{width:30%;}
+#onepagecheckout_orderform .col3-set .col-2{margin-left:25px;}
 
 #onepagecheckout_orderform #register-customer-password{margin-bottom:5px;}
 #onepagecheckout_orderform #ship_address_block{margin-top:35px;}
@@ -62,7 +62,7 @@ li.options label {color:#767676;}
 
 input, select, textarea, button{color:#000;} 
 
-#onepagecheckout_orderform .col3-set .col-2 , #onepagecheckout_orderform .col3-set .col-1  { min-height: 450px;}
+#onepagecheckout_orderform .col3-set .col-3, #onepagecheckout_orderform .col3-set .col-2 , #onepagecheckout_orderform .col3-set .col-1  { min-height: 450px;  float: left;}
 
 .onepagecheckout_datafields .gift-messages-form .item .details .form-list .field,
 .onepagecheckout_datafields .gift-messages-form .item .details .form-list .input-box,

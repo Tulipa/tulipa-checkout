@@ -1,24 +1,24 @@
-﻿tulipa(document).ready(function() {
+﻿jQuery(document).ready(function() {
     var options = {
         onLoad: function() {
-            //tulipa('#messages').text('Start typing password');
+            //jQuery('#messages').text('Start typing password');
         },
         onKeyUp: function(evt) {
-            tulipa(evt.target).pwstrength("outputErrorList");
+            jQuery(evt.target).pwstrength("outputErrorList");
         },
 		onChange: function(evt) {
-            tulipa(evt.target).pwstrength("outputErrorList");
+            jQuery(evt.target).pwstrength("outputErrorList");
         }
     };
-    //tulipa(':password').pwstrength(options);
-    tulipa('.inputpass').pwstrength(options);
+    //jQuery(':password').pwstrength(options);
+    jQuery('.inputpass').pwstrength(options);
 });
 /*jslint vars: false, browser: true, nomen: true, regexp: true */
-/*global tulipa */
+/*global jQuery */
 /*
- * tulipa Password Strength plugin for Twitter Bootstrap
+ * jQuery Password Strength plugin for Twitter Bootstrap
  */
-(function(tulipa) {
+(function(jQuery) {
     "use strict";
     var options = {
             errors: [],
@@ -83,7 +83,7 @@
                     return lenScore;
                 },
                 wordSimilarToUsername: function(options, word, score) {
-                    var username = tulipa(options.usernameField).val();
+                    var username = jQuery(options.usernameField).val();
                     if (username && word.toLowerCase().match(username.toLowerCase())) {
                         options.errors.push(options.errorMessages.same_as_username);
                         return score;
@@ -127,11 +127,11 @@
 
             if (options.showVerdicts) {
                 if (options.viewports.verdict) {
-                    verdict = tulipa(options.viewports.verdict).find(".password-verdict");
+                    verdict = jQuery(options.viewports.verdict).find(".password-verdict");
                 } else {
                     verdict = el.parent().find(".password-verdict");
                     if (verdict.length === 0) {
-                        verdict = tulipa('<span class="password-verdict"></span>');
+                        verdict = jQuery('<span class="password-verdict"></span>');
                         verdict.insertAfter(el);
                     }
                 }
@@ -176,7 +176,7 @@
                 totalScore = 0,
                 options = el.data("pwstrength");
 
-            tulipa.each(options.rules, function(rule, active) {
+            jQuery.each(options.rules, function(rule, active) {
                 if (active === true) {
                     var score = options.ruleScores[rule],
                         result = options.validationRules[rule](options, word, score);
@@ -196,10 +196,10 @@
         methods = {
             init: function(settings) {
                 var self = this,
-                    allOptions = tulipa.extend(options, settings);
+                    allOptions = jQuery.extend(options, settings);
 
                 return this.each(function(idx, el) {
-                    var el = tulipa(el),
+                    var el = jQuery(el),
                         progressbar,
                         verdict;
 
@@ -209,7 +209,7 @@
                         var options = el.data("pwstrength");
                         options.errors = [];
                         calculateScore.call(self, el);
-                        if (tulipa.isFunction(options.onKeyUp)) {
+                        if (jQuery.isFunction(options.onKeyUp)) {
                             options.onKeyUp(event);
                         }
                     });
@@ -218,14 +218,14 @@
                         var options = el.data("pwstrength");
                         options.errors = [];
                         calculateScore.call(self, el);
-                        if (tulipa.isFunction(options.onChange)) {
+                        if (jQuery.isFunction(options.onChange)) {
                             options.onChange(event);
                         }
                     });
 /* fim */
-                    progressbar = tulipa(progressWidget());
+                    progressbar = jQuery(progressWidget());
                     if (allOptions.viewports.progress) {
-                        tulipa(allOptions.viewports.progress).append(progressbar);
+                        jQuery(allOptions.viewports.progress).append(progressbar);
                     } else {
                         progressbar.insertAfter(el);
                     }
@@ -233,15 +233,15 @@
                     el.data("pwstrength").progressbar = progressbar;
 
                     if (allOptions.showVerdicts) {
-                        verdict = tulipa('<span class="password-verdict msgcamponormal">' + allOptions.verdicts[0] + '</span>');
+                        verdict = jQuery('<span class="password-verdict msgcamponormal">' + allOptions.verdicts[0] + '</span>');
                         if (allOptions.viewports.verdict) {
-                            tulipa(allOptions.viewports.verdict).append(verdict);
+                            jQuery(allOptions.viewports.verdict).append(verdict);
                         } else {
                             verdict.insertAfter(el);
                         }
                     }
 
-                    if (tulipa.isFunction(allOptions.onLoad)) {
+                    if (jQuery.isFunction(allOptions.onLoad)) {
                         allOptions.onLoad();
                     }
                 });
@@ -249,7 +249,7 @@
 
             destroy: function() {
                 this.each(function(idx, el) {
-                    var el = tulipa(el);
+                    var el = jQuery(el);
                     el.parent().find("span.password-verdict").remove();
                     el.parent().find("div.progress").remove();
                     el.parent().find("ul.error-list").remove();
@@ -260,7 +260,7 @@
             forceUpdate: function() {
                 var self = this;
                 this.each(function(idx, el) {
-                    var el = tulipa(el),
+                    var el = jQuery(el),
                         options = el.data("pwstrength");
                     options.errors = [];
                     calculateScore.call(self, el);
@@ -270,21 +270,21 @@
             outputErrorList: function() {
                 this.each(function(idx, el) {
                     var output = '<ul class="error-list msgcamponormal">',
-                        el = tulipa(el),
+                        el = jQuery(el),
                         errors = el.data("pwstrength").errors,
                         viewports = el.data("pwstrength").viewports,
                         verdict;
                     el.parent().find("ul.error-list").remove();
 
                     if (errors.length > 0) {
-                        tulipa.each(errors, function(i, item) {
+                        jQuery.each(errors, function(i, item) {
                             output += '<li>' + item + '</li>';
                         });
                         output += '</ul>';
                         if (viewports.errors) {
-                            tulipa(viewports.errors).html(output);
+                            jQuery(viewports.errors).html(output);
                         } else {
-                            output = tulipa(output);
+                            output = jQuery(output);
                             verdict = el.parent().find("span.password-verdict");
                             if (verdict.length > 0) {
                                 el = verdict;
@@ -297,7 +297,7 @@
 
             addRule: function(name, method, score, active) {
                 this.each(function(idx, el) {
-                    var options = tulipa(el).data("pwstrength");
+                    var options = jQuery(el).data("pwstrength");
                     options.rules[name] = active;
                     options.ruleScores[name] = score;
                     options.validationRules[name] = method;
@@ -306,26 +306,26 @@
 
             changeScore: function(rule, score) {
                 this.each(function(idx, el) {
-                    tulipa(el).data("pwstrength").ruleScores[rule] = score;
+                    jQuery(el).data("pwstrength").ruleScores[rule] = score;
                 });
             },
 
             ruleActive: function(rule, active) {
                 this.each(function(idx, el) {
-                    tulipa(el).data("pwstrength").rules[rule] = active;
+                    jQuery(el).data("pwstrength").rules[rule] = active;
                 });
             }
         };
 
-    tulipa.fn.pwstrength = function(method) {
+    jQuery.fn.pwstrength = function(method) {
         var result;
         if (methods[method]) {
             result = methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === "object" || !method) {
             result = methods.init.apply(this, arguments);
         } else {
-            tulipa.error("Method " + method + " does not exist on tulipa.pwstrength");
+            jQuery.error("Method " + method + " does not exist on jQuery.pwstrength");
         }
         return result;
     };
-}(tulipa));
+}(jQuery));

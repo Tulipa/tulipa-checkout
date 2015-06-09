@@ -2,13 +2,11 @@ Necessário  a instalação do módulo de css less:
 
 http://www.magentocommerce.com/magento-connect/lesscss.html
 
-Adicione a linha a seguir no arquivo page.xml mais ou menos linha 60:
+Adicione a linha a seguir no arquivo page.xml da pasta base ou de seu tema (se estiver usando o magento 1.9 sem tema modifique o arquivo da pasta rwd) mais ou menos linha 60:
 
 <action method="addCss"><stylesheet>css/tulipa-checkout.less</stylesheet></action>
 
-e
 
-<action method="addJs"><script>Tulipa-Checkout/jquery.js</script></action>
 
 LIMPAR CACHE E REINDEXAR!!!!
 Não esqueça de habilitar o módulo na opção GERAL (abaixo de Gerenciador de conteúdo)

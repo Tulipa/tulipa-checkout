@@ -1,5 +1,5 @@
-﻿tulipa(document).ready(function(){  	
-   tulipa('.geradorsenha').pGenerator({
+﻿jQuery(document).ready(function(){  	
+   jQuery('.geradorsenha').pGenerator({
         'bind': 'click',
         //'passwordElement': '#password,#confirmation',
         'displayElement': '.senhagerada b',
@@ -9,8 +9,8 @@
         'numbers':   true,
         'specialChars': true,
 		'onPasswordGenerated': function(generatedPassword) {
-        tulipa('#password,#confirmation,input[name*="customer_password"],input[name*="confirm_password"]').val(generatedPassword).trigger("change");
-		tulipa('.senhagerada').fadeIn('slow');
+        jQuery('#password,#confirmation,input[name*="customer_password"],input[name*="confirm_password"]').val(generatedPassword).trigger("change");
+		jQuery('.senhagerada').fadeIn('slow');
        }
     });
 });

@@ -1,19 +1,19 @@
-﻿tulipa(document).ready(function() {
+﻿jQuery(document).ready(function() {
 //personalizando campos radio e checkbox
-    tulipa('input').on('ifClicked', function(event) {
+    jQuery('input').on('ifClicked', function(event) {
         var tipop = this.id;
         switch (tipop) {
             case 'newFisica':
-                tulipa("#tipopessoa").val("Fisica").change();
+                jQuery("#tipopessoa").val("Fisica").change();
                 break;
             case 'newJuridica':
-                tulipa("#tipopessoa").val("Juridica").change();
+                jQuery("#tipopessoa").val("Juridica").change();
                 break;
             case 'change_password':
-                tulipa("#change_password").click();
+                jQuery("#change_password").click();
                 break;
             case 'shipping:same_as_billing':
-                tulipa("input[name*='same_as_billing']").click();
+                jQuery("input[name*='same_as_billing']").click();
                 break;
         }
     }).iCheck({

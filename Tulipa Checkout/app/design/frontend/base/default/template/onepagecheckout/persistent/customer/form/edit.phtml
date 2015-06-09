@@ -2,7 +2,6 @@
 //$jquery = Mage::getStoreConfig('onepagecheckout/general/jquery');
 //if ($jquery !== '0') :
 ?>
-<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/jquery.js"></script>
 <script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/jquery.maskedinput.min.js"></script>
 <script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/jquery.autotab-1.1b.js"></script>
 <script type="text/javascript" src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)?>frontend/base/default/deivison/deivison.js"></script>
@@ -16,7 +15,7 @@
 <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>Tulipa-Checkout/pGenerator.jquery.js"></script>
 <?php //endif; ?>
 <script>
-tulipa.blockUI({
+jQuery.blockUI({
             message: 'Carregando, aguarde...',
 			css: {border: 'none', backgroundColor: 'none', color: '#fff' }
         	});
@@ -48,7 +47,7 @@ tulipa.blockUI({
                         </select>
                         <script type="text/javascript">
 						//<![CDATA[
-                            tulipa('#tipopessoa').children("option:contains('<?php echo $this->htmlEscape($this->getCustomer()->getTipopessoa()) ?>')").attr('selected', 'selected');
+                            jQuery('#tipopessoa').children("option:contains('<?php echo $this->htmlEscape($this->getCustomer()->getTipopessoa()) ?>')").attr('selected', 'selected');
 						//]]>
 						</script>
                     </div>
@@ -173,13 +172,13 @@ tulipa.blockUI({
     var dataForm = new VarienForm('form-validate', true);
     function setPasswordForm(arg){
         if(arg){
-            tulipa('#current_password').parents("div.fieldset").fadeIn("slow");
+            jQuery('#current_password').parents("div.fieldset").fadeIn("slow");
             $('current_password').addClassName('required-entry');
             $('password').addClassName('required-entry');
             $('confirmation').addClassName('required-entry');
 
         }else{
-            tulipa('#current_password').parents("div.fieldset").fadeOut("slow");
+            jQuery('#current_password').parents("div.fieldset").fadeOut("slow");
             $('current_password').removeClassName('required-entry');
             $('password').removeClassName('required-entry');
             $('confirmation').removeClassName('required-entry');

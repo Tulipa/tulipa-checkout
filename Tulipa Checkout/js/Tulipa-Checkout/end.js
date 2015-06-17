@@ -23,7 +23,7 @@ jQuery(document).ready(function() {
             return jQuery(this).find('label').attr('for')
         })
 //adiciona valor no uf
-    vuf = jQuery('select[name="billing[region_id]').val();
+    vuf = jQuery('select[name="billing[region_id]"]').val();
     jQuery("#region").val(vuf).change();
 //ocultando campos
     jQuery("li.firstname,li.company,li.tipopessoa,li.rg,li.cpfcnpj,li.ie,li.celular").hide();
